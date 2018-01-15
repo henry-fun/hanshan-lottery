@@ -180,6 +180,7 @@ aside .switch {
 .award-con .win .avatar img {
     width: 4rem;
     height: 4rem;
+    border-radius: 100%;
 }
 #award-04 {
     display: none;
