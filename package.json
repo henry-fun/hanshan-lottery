@@ -1,0 +1,27 @@
+{
+  "name": "hanshan-lottery",
+  "version": "0.0.1",
+  "description": "An amazing lottery app created for the word",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.coding.net/hancode/info_lottery.git"
+  },
+  "keywords": [
+    "lottery",
+    "年会",
+    "抽奖",
+    "reward",
+    "javascript",
+    "html5"
+  ],
+  "author": "hanshan",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  }
+}

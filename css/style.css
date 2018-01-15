@@ -1,0 +1,840 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+html {
+    overflow-y: hidden;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* 清除浮动 */
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*+height:1%;}
+.f-l {
+   float: left;
+}
+.f-r {
+    float: right;
+}
+* {
+    font-family: '微软雅黑', sans-serif, arial;
+}
+html {
+    height: 100%;
+    font-size: 62.5%;
+    color: #222;
+}
+::selection {
+    background-color: #b3d4fc;
+    text-shadow: none;
+}
+body {
+    height: 100%;
+    /*background: #FFF7E3;*/
+    background: url("../img/yunwen.jpg") repeat;
+    /*background: #fff;*/
+    font-size: 1.5rem;
+}
+
+.top-head {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 2;
+    background: url("../img/top_border.png") repeat-x;
+}
+
+.main {
+    width: 62%;
+    height: 100%;
+    margin: 5rem auto 0 auto;
+}
+aside {
+    position: absolute;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    z-index: 1;
+    text-align: center;
+    /*background: #fff;*/
+    /*border: 1px solid red;*/
+}
+.aside-main {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding-top: 4rem;
+    box-shadow: 0 4px 8px #aaa;
+}
+aside.aside-left {
+    left: 0;
+}
+aside.aside-right {
+    right: 0;
+}
+aside .switch {
+    margin-top: 1.2rem;
+    transform: rotateY(360deg);
+    transition: all 2s ease-in-out;
+    cursor: pointer;
+    -moz-animation: rotation 3s linear infinite;
+    -webkit-animation: rotation 3s linear infinite;
+    -o-animation: rotation 3s linear infinite;
+}
+.award-main {
+    margin-top: 1.5rem;
+}
+#award-01,#award-02,#award-03 {
+    display: none;
+}
+.award-con {
+    margin-top: 0.5rem;
+    padding: 2%;
+}
+
+.award-con .award-title {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+    color: #FD361F;
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    font-family: 'STKaiti', 'KaiTi ';
+    border-bottom: 2px solid #FD361F;
+}
+#liwu-con .award-title {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.award-con .win {
+    margin-top: 0.6rem;
+}
+.award-con .win .win-li {
+    padding: 0 5% 0 20%;
+    margin: 0.5rem auto 0 auto;
+}
+#liwu-con .win .win-li {
+    margin: 0.2rem auto 0 auto;
+}
+.award-con .win .delete {
+    display: none;
+    padding: 0.2rem;
+    margin:1rem 0 0 2rem;
+    font-size: 1.5rem;
+    color: #FD361F;
+    text-decoration: none;
+    border-radius: 5rem;
+    border: 1px solid #FD361F;
+}
+.award-con .win .name {
+    line-height: 4rem;
+    margin-left: 2rem;
+    color: #2980B9;
+    font-size: 2rem;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+#liwu-con .win .name {
+    font-size: 1.5rem;
+}
+.award-con .win .avatar img {
+    width: 4rem;
+    height: 4rem;
+}
+#award-04 {
+    display: none;
+}
+
+#award-04 .win .name {
+    line-height: 3rem;
+    font-size: 1.8rem;
+}
+#award-04 .win .avatar img {
+    width: 3rem;
+    height: 3rem;
+}
+#award-04 .win .win-li {
+    margin: 0 auto 0 auto;
+}
+
+#award04-toggle {
+    display: none;
+    width: 50%;
+    margin: 1rem auto 1rem auto;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: #2980B9;
+    font-size: 2rem;
+    font-family: 'STKaiti', 'KaiTi ';
+    border-radius: 2px;
+    border: 1px solid #2980B9;
+}
+
+@keyframes rotateFront{
+    0%{
+        transform: rotateY(0deg);
+    }
+    100%{
+        transform: rotateY(-360deg);
+    }
+}
+@keyframes rotateBack{
+    0%{
+        transform: rotateY(180deg);
+    }
+    100%{
+        transform: rotateY(-180deg);
+    }
+}
+
+.lotterty-infogo {
+    margin: 3rem auto 0 auto;
+    text-align: center
+}
+.lotterty-infogo h3 {
+    display: inline-block;
+    color: #FD361F;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+.lotterty-infogo .line {
+    margin: 2rem auto 1rem auto;
+    width: 20%;
+    height: 2px;
+    background: #FD361F;
+}
+.lottery-main {
+    position: relative;
+    margin: 0 auto;
+    /*padding-bottom: 5rem;*/
+    /*padding: 20px 0;*/
+    height: 100%;
+    width: 100%;
+    /*overflow: hidden;*/
+    /*background: #fff;*/
+    /*border: 1px solid #ddd;*/
+    /*border-radius: 5px;*/
+    /*box-shadow: 0 2px 2px rgba(0,0,0,.1)*/
+}
+.wrap-border-main {
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    z-index: -5;
+}
+.wrap-border {
+    position: absolute;
+    width: 21.5rem;
+    height: 21.5rem;
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background: url("../img/main-wrap-border.png") no-repeat 0 0;*/
+    background-size: contain;
+}
+.wrap-border-top {
+    top: 0.2%;
+    left: 9%;
+    bottom: 0;
+    height: 97.4%;
+    width: 81%;
+    margin: 0 auto;
+    border-top: 4.5px solid #CB141D;
+    border-bottom: 4.5px solid #CB141D;
+}
+.wrap-border-left {
+    left: 0;
+    right: 0;
+    bottom: 7%;
+    height: 80%;
+    width: 98.7%;
+    border-left: 4.5px solid #CB141D;
+}
+.wrap-border-right {
+    top: 10%;
+    right: 0;
+    height: 80%;
+    width: 4.3px;
+    background: #CB141D;
+}
+.wrap-border-1 {
+    top: 0;
+    left: 0;
+}
+.wrap-border-2 {
+    top: 0;
+    right: 0;
+}
+.wrap-border-3 {
+    bottom: 0;
+    left: 0;
+}
+.wrap-border-4 {
+    bottom: 0;
+    right: 0;
+}
+.wrap-main .stop-time {
+    display: none;
+    position: absolute;
+    top: 40%;
+    height: 11rem;
+    font-size: 11rem;
+    font-family: 'STKaiti', 'KaiTi ';
+    color: #CB141D;
+}
+.wrap-main #stop_left {
+    padding-left: 2%;
+}
+.wrap-main #stop_right {
+    right: -1%;
+    padding-right: 2%;
+}
+.lottery-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+.wrap-main {
+    position: relative;
+    top: 2%;
+    /*height: 640px*/
+    height: 71%;
+    overflow: hidden;
+    /*border: 3px solid #CB141D;*/
+}
+#lottery-wrap {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+}
+
+#lottery-wrap .sure-active {
+    border-top: 5px solid #CB141D;
+    border-bottom: 5px solid #CB141D;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    /*padding: 2rem;*/
+}
+
+.lottery-list {
+    position: relative;
+    margin: 0 auto 2rem auto;
+    width: 100%;
+}
+.lottery-avatar {
+    height: 90px;
+    width: 90px;
+    margin-left: 8rem;
+    margin-top: 1.5rem;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    border-radius: 90px;
+    overflow: hidden;
+}
+.lottery-avatar.turqoise {
+    -webkit-box-shadow: 0 0 0 4px white, inset 0 0 0 1px rgba(254,54,31,0.2), 0 0 0 8px rgba(254,54,31,0.9);
+    -moz-box-shadow: 0 0 0 4px white,inset 0 0 0 1px rgba(254,54,31,0.2),0 0 0 8px rgba(254,54,31,0.9);
+    box-shadow: 0 0 0 4px white, inset 0 0 0 1px rgba(254,54,31,0.2), 0 0 0 8px rgba(254,54,31,0.9);
+}
+.lottery-avatar img {
+    width: 90px;
+    height: 90px;
+}
+.lottery-content {
+    position: relative;
+    margin-left: 3rem;
+    padding: 2rem;
+    width: 65%;
+    height: 7rem;
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 2px rgba(0,0,0,0.1);
+    box-shadow: 0 2px rgba(0,0,0,0.1);
+    /*background: #FE351E;*/
+    background: rgba(255,255,255,0.8);
+    /*border: 2px solid #FD361F;*/
+    /*border:15px solid transparent;*/
+    /*-moz-border-image:url(../img/china-border.png) 30 30 stretch;	!* Old Firefox *!*/
+    /*-webkit-border-image:url(../img/china-border.png) 30 30 stretch;	!* Safari and Chrome *!*/
+    /*-o-border-image:url(../img/china-border.png) 30 30 stretch;		!* Opera *!*/
+    /*border-image:url(../img/china-border.png) 30 30 stretch;*/
+    /*background: url("../img/border.png") no-repeat;*/
+    /*background-size: cover;*/
+}
+.lottery-content .beauty {
+    position: absolute;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+.lottery-content .border-01 {
+    top: 3px;
+    left: 3px;
+    background: url("../img/border-01.png") no-repeat;
+    background-size: contain;
+}
+.lottery-content .border-02 {
+    top: 3px;
+    right: 3px;
+    background: url("../img/border-02.png") no-repeat;
+    background-size: contain;
+}
+.lottery-content .border-03 {
+    bottom: 3px;
+    left: 3px;
+    background: url("../img/border-03.png") no-repeat;
+    background-size: contain;
+}
+.lottery-content .border-04 {
+    bottom: 3px;
+    right: 3px;
+    background: url("../img/border-04.png") no-repeat;
+    background-size: contain;
+}
+.lottery-content:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -20px;
+    right: auto;
+    top: 40%;
+    border: 10px solid transparent;
+    border-right-color: #FD361F;
+}
+.lottery-content:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: -17px;
+    right: auto;
+    border: 10px solid transparent;
+    border-right-color: #fff;
+}
+
+.lottery-content .content-title  {
+    margin: 0 0 10px;
+    text-align: center;
+}
+.lottery-content .content-title .lottery-name {
+    font-size: 2rem;
+    color: #2980b9;
+    font-weight: bold;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+.lottery-content .content-title .company {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #3498db;
+    font-family: '微软雅黑', sans-serif, arial;
+}
+.lottery-content .content-detail b {
+    color: #FD361F;
+    font-weight: bold;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+.lottery-content .content-detail span {
+    margin: 15px 0 10px;
+    line-height: 25px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+
+.dashboard {
+    position: relative;
+    margin: 4rem auto 0 auto;
+    text-align: center;
+}
+.btn {
+    padding: 1rem 1.5rem;
+    text-align: center;
+    border-radius: 0.5rem;
+}
+.btn-red {
+    color: #ffffff;
+    background: #FD361F;
+    /*-webkit-box-shadow: 0 6px rgba(253, 54, 31, 0.5);*/
+    /*-moz-box-shadow: 0 6px rgba(253, 54, 31, 0.5);*/
+    /*box-shadow: 0 6px rgba(253, 54, 31, 0.5);*/
+    box-shadow: 0 6px #B92C1C;
+}
+.btn-red-outline {
+    width: 40%;
+    margin: 1.5rem auto 0 auto;
+    cursor: pointer;
+    color: #FD361F;
+    border: 3px solid #FD361F;
+    -webkit-box-shadow: 0 6px rgba(253, 54, 31, 0.5);
+    -moz-box-shadow: 0 6px rgba(253, 54, 31, 0.5);
+    box-shadow: 0 6px rgba(253, 54, 31, 0.5);
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+.dashboard .lottery-btn {
+    display: inline-block;
+    width: 15%;
+    margin: 0 auto;
+    padding: 1rem 1.6rem;
+    cursor: pointer;
+    font-size: 2rem;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+
+.dashboard .lottery-btn:active {
+    margin-top: 5px;
+    -webkit-box-shadow: 0 1px rgba(253, 54, 31, 0.3);
+    -moz-box-shadow: 0 1px rgba(253, 54, 31, 0.3);
+    box-shadow: 0 1px rgba(253, 54, 31, 0.3);
+}
+.dashboard .lottery-btn.start {
+    background: #d41c07;
+    cursor: pointer;
+}
+.dashboard .lottery-btn.end {
+    background: #d41c07;
+    cursor: not-allowed;
+}
+
+.dashboard .cirle-btn {
+    position: absolute;
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    color: #FD361F;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: 'STKaiti', 'KaiTi ';
+    border: 3px solid #FD361F;
+    border-radius: 100%;
+    -webkit-box-shadow: 0 5px rgba(253, 54, 31, 0.5);
+    -moz-box-shadow: 0 5px rgba(253, 54, 31, 0.5);
+    box-shadow: 0 5px rgba(253, 54, 31, 0.5);
+}
+.dashboard .cirle-btn:nth-child(1) {
+    left: 15%;
+}
+.dashboard .cirle-btn:nth-child(2) {
+    left: 22%;
+}
+.dashboard .cirle-btn:nth-child(4) {
+    right: 22%;
+}
+.dashboard .cirle-btn:nth-child(5) {
+    right: 15%;
+}
+.award-active {
+    background: #ffbfb7;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #aaa;
+    /*filter: alpha(opacity=20);*/
+    /*opacity: .2*/
+}
+.close:hover,.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: .5
+}
+button.close {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 57%;
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    z-index: 1050;
+}
+.close span {
+    font-size: 5rem;
+    color: #DBB76B;
+}
+.modal-open {
+    overflow: hidden
+}
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0
+}
+.modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -o-transition: -o-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    -webkit-transform: translate(0,-25%);
+    -ms-transform: translate(0,-25%);
+    -o-transform: translate(0,-25%);
+    transform: translate(0,-25%);
+    /*top: 15%;*/
+}
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    transform: translate(0,0)
+}
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto
+}
+.modal-dialog {
+    position: relative;
+    width: auto;
+    height: 80%;
+    margin: 10px;
+}
+.modal-content {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    outline: 0;
+}
+.modal-content #lottery-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.modal-content #lottery-avatar {
+    position: absolute;
+    top: 11.2%;
+    left: 19.2%;
+    width: 61%;
+    text-align: center;
+}
+
+.modal-content #lottery-name {
+    position: absolute;
+    bottom: 27%;
+    width: 100%;
+    text-align: center;
+    font-size: 5rem;
+    color: #D9AD61;
+    font-weight: bold;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+
+
+.modal-content #lottery-img {
+    width: 100%;
+    display: none;
+}
+.modal-content #lottery-canvas {
+    width: 100%;
+    /*display: none;*/
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+}
+.modal-backdrop.fade {
+    filter: alpha(opacity=0);
+    opacity: 0
+}
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .5
+}
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5
+}
+.modal-header .close {
+    margin-top: -2px
+}
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143
+}
+.modal-body {
+    position: relative;
+    padding: 15px
+}
+.modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5
+}
+.modal-footer .btn+.btn {
+    margin-bottom: 0;
+    margin-left: 5px
+}
+.modal-footer .btn-group .btn+.btn {
+    margin-left: -1px
+}
+.modal-footer .btn-block+.btn-block {
+    margin-left: 0
+}
+.modal-scrollbar-measure {
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll
+}
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 20%;
+        margin: 30px auto
+    }
+}
+
+.snow-canvas {
+    display: none;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1045;
+}
+
+.stop-main {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+.stop-main #stop-time {
+    position: absolute;
+    left: 45%;
+    top: 35%;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+    font-size: 20rem;
+    color: #FD361F;
+    font-family: 'STKaiti', 'KaiTi ';
+    border: 4px solid #FD361F;
+    border-radius: 100%;
+}
+.stop-main .back:after {
+    content: '';
+    width: 100%;
+}
+.stop-main .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.1);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+    z-index: 3;
+    background: url("../img/langhua.png") repeat-x;
+    background-size: contain;
+}
+
+#music-control {
+    z-index: 99;
+    position: fixed;
+    bottom: 3%;
+    left: 0.5%;
+    width: 3rem;
+    height: 3rem;
+    background: url("../img/music.png") 0 0 no-repeat;
+    background-size: contain;
+}
+
+#clear-control {
+    z-index: 99;
+    position: fixed;
+    bottom: 3%;
+    right: 0.5%;
+    width: 3rem;
+    height: 3rem;
+    background: url("../img/clear.png") 0 0 no-repeat;
+    background-size: contain;
+}
+
+
+
+
