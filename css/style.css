@@ -389,29 +389,14 @@ aside .switch {
 }
 .lottery-content {
     position: relative;
-    margin-left: 3rem;
+    margin: 0 auto;
+    width: 82%;
+    max-width: 30em;
     padding: 2rem;
-    width: 65%;
-    height: 7rem;
-    -webkit-transition: all .4s;
-    -moz-transition: all .4s;
-    transition: all .4s;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 5px;
-    -webkit-box-shadow: 0 2px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0 2px rgba(0,0,0,0.1);
     box-shadow: 0 2px rgba(0,0,0,0.1);
     /*background: #FE351E;*/
     background: rgba(255,255,255,0.8);
-    /*border: 2px solid #FD361F;*/
-    /*border:15px solid transparent;*/
-    /*-moz-border-image:url(../img/china-border.png) 30 30 stretch;	!* Old Firefox *!*/
-    /*-webkit-border-image:url(../img/china-border.png) 30 30 stretch;	!* Safari and Chrome *!*/
-    /*-o-border-image:url(../img/china-border.png) 30 30 stretch;		!* Opera *!*/
-    /*border-image:url(../img/china-border.png) 30 30 stretch;*/
-    /*background: url("../img/border.png") no-repeat;*/
-    /*background-size: cover;*/
 }
 .lottery-content .beauty {
     position: absolute;
@@ -444,29 +429,28 @@ aside .switch {
     background: url("../img/border-04.png") no-repeat;
     background-size: contain;
 }
-.lottery-content:before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: -20px;
-    right: auto;
-    top: 40%;
-    border: 10px solid transparent;
-    border-right-color: #FD361F;
-}
-.lottery-content:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 40%;
-    left: -17px;
-    right: auto;
-    border: 10px solid transparent;
-    border-right-color: #fff;
-}
+/*.lottery-content:before {*/
+    /*content: "";*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*left: -20px;*/
+    /*right: auto;*/
+    /*top: 40%;*/
+    /*border: 10px solid transparent;*/
+    /*border-right-color: #FD361F;*/
+/*}*/
+/*.lottery-content:after {*/
+    /*content: "";*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*top: 40%;*/
+    /*left: -17px;*/
+    /*right: auto;*/
+    /*border: 10px solid transparent;*/
+    /*border-right-color: #fff;*/
+/*}*/
 
 .lottery-content .content-title  {
-    margin: 0 0 10px;
     text-align: center;
 }
 .lottery-content .content-title .lottery-name {

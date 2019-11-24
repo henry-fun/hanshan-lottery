@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>寒山2017 - 新年抽奖</title>
+    <title>智慧芽 - 新年抽奖</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/animate.css">
 </head>
@@ -10,129 +10,7 @@
 <!-- 顶部中国风花纹 start -->
 <header class="top-head"></header>
 
-<!--左侧中奖名单展示-->
-<aside class="aside-left">
-    <div class="aside-main" id="mingdan-con">
-        <div class="btn btn-red-outline" data-toggle="modal" id="mingdan-title">中奖名单</div>
-        <div class="award-main">
-            <div id="award-123">
-                <div class="award-con" id="award-01">
-                    <h3 class="award-title">一等奖</h3>
-                    <ul class="win"></ul>
-                </div>
-                <div class="award-con" id="award-02">
-                    <h3 class="award-title">二等奖</h3>
-                    <ul class="win"></ul>
-                </div>
-                <div class="award-con" id="award-03">
-                    <h3 class="award-title">三等奖</h3>
-                    <ul class="win"></ul>
-                </div>
-            </div>
-            <div class="award-con" id="award-04">
-                <h3 class="award-title">纪念奖</h3>
-                <ul class="win"></ul>
-            </div>
-            <a href="javascript:;" id="award04-toggle" class="more">查看更多</a>
-        </div>
-    </div>
-    <img src="./img/lantern.png" alt="" width="85" id="mingdan" class="switch">
-</aside>
-<!--右侧奖品名单展示-->
-<aside class="aside-right">
-    <div class="aside-main" id="liwu-con">
-        <div class="btn btn-red-outline" data-toggle="modal" id="liwu-title">新年礼物</div>
-        <div class="award-main">
-            <div class="award-con">
-                <h3 class="award-title">一等奖</h3>
-                <ul class="win">
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/canon.jpg"/>
-                        </div>
-                        <div class="f-l name">佳能微单</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="award-con">
-                <h3 class="award-title">二等奖</h3>
-                <ul class="win">
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/kindle.jpg"/>
-                        </div>
-                        <div class="f-l name">Kindle 阅读器</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/kule.jpg"/>
-                        </div>
-                        <div class="f-l name">酷乐视投影机</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/beats.jpg"/>
-                        </div>
-                        <div class="f-l name">Beats动力耳机</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="award-con">
-                <h3 class="award-title">三等奖</h3>
-                <ul class="win">
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/jingdong.jpg"/>
-                        </div>
-                        <div class="f-l name">京东购物E卡</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/yashua.jpg"/>
-                        </div>
-                        <div class="f-l name">飞利浦电动牙刷</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/anmo.jpg"/>
-                        </div>
-                        <div class="f-l name">颈椎按摩器</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="award-con">
-                <h3 class="award-title">纪念奖</h3>
-                <ul class="win">
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/chongdian.jpg"/>
-                        </div>
-                        <div class="f-l name">罗马仕充电宝</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/nuanshou.jpg"/>
-                        </div>
-                        <div class="f-l name">马卡龙  暖手宝</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/bao.jpg"/>
-                        </div>
-                        <div class="f-l name">旅行双肩包</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/beizi.jpg"/>
-                        </div>
-                        <div class="f-l name">乐扣马克保温杯</div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <img src="./img/lantern.png" alt="" width="85" id="liwu" class="switch">
-</aside>
+
 
 <!--倒计时展示-->
 <div class="stop-main">
@@ -188,22 +66,18 @@
 <!-- 新年祝福框模板 start -->
 <script type="text/template" id="lotterycon-tpl">
     <% _.each(lottery_datas, function (item) { %>
-    <div class="clearfix lottery-list" data-id="" data-namezh="<%= item.namezh %>" data-nameen="<%= item.nameen %>">
-        <div class="f-l turqoise lottery-avatar">
-            <img src="./img/avatar/<%= item.nameen %>.jpg" alt="<%= item.namezh %>">
-        </div>
-        <div class="f-l lottery-content">
+    <div class="lottery-list" data-id="" data-namezh="<%= item.namezh %>" data-nameen="<%= item.nameen %>">
+        <div class="lottery-content">
             <em class="beauty border-01"></em>
             <em class="beauty border-02"></em>
             <em class="beauty border-03"></em>
             <em class="beauty border-04"></em>
             <div class="border bor-top"></div>
             <div class="border bor-bottom"></div>
-            <h3 class="content-title"> <span class="lottery-name"><%= item.namezh %></span> &nbsp;&nbsp;<span class="company">[ 寒山科技 ]</span></h3>
-            <div class="content-detail">
-                <b>新年愿景及祝福：</b>
-                <span><%= item.wish %></span>
-            </div>
+            <h3 class="content-title">
+                <span class="lottery-name"><%= item.namezh %></span>
+                <% if(item.office) { %>&nbsp;&nbsp;<span class="company">[ <%= item.office %> ]</span><% } %>
+            </h3>
         </div>
     </div>
     <% }); %>
@@ -281,13 +155,7 @@
 
 
     // ---------------- 加载、渲染 滚动抽奖信息数据 ------------
-    // 如果得不到数据，则从初始化数据中获取
-    if (!local_handle.get("lottery_datas")) {
-        var lottery_storage = window.localStorage.getItem('lottery_initial');
-    } else {
-        var lottery_storage = window.localStorage.getItem('lottery_datas');
-    }
-    var lottery_datas = JSON.parse(lottery_storage);
+    const lottery_datas = shuffle(lottery_initial_datas)
     $('#lottery-wrap').html( _.template($('#lotterycon-tpl').html(), lottery_datas));
 
     // ---------------- 加载、渲染 滚动抽奖信息数据 ------------
@@ -334,22 +202,8 @@
 
 
     // ---------------- 抽奖动画相关参数配置 ------------
-    var nextFrame = window.requestAnimationFrame       ||
-                    window.webkitRequestAnimationFrame ||
-                    window.mozRequestAnimationFrame    ||
-                    window.msRequestAnimationFrame     ||
-                    function(callback) {
-                        var currTime = + new Date,
-                                delay = Math.max(1000/60, 1000/60 - (currTime - lastTime));
-                        lastTime = currTime + delay;
-                        return setTimeout(callback, delay);
-                    },
-                    cancelFrame = window.cancelAnimationFrame         ||
-                            window.webkitCancelAnimationFrame         ||
-                            window.webkitCancelRequestAnimationFrame  ||
-                            window.mozCancelRequestAnimationFrame     ||
-                            window.msCancelRequestAnimationFrame      ||
-                            clearTimeout,
+    var nextFrame = window.requestAnimationFrame,
+                    cancelFrame = window.cancelAnimationFrame,
                     // 初始滚动速度
                     speed = 6,
                     // 每个对话框外部高度(包括padding与margin)
@@ -373,25 +227,34 @@
                     // 全局 setTimeout 定时任务指定变量
                     setout_time = null;
 
+    function setTopStyle(ele, y) {
+        ele.style.transform = `translateY(${y}px)`;
+    }
     // 嗯，just go ！
+    var moveDom = document.getElementById('lottery-wrap'),
+        wrapDom = document.getElementById('lottery-main'),
+        list = $('#lottery-wrap .lottery-list');
     function justGo (isMove) {
-        var moveDom = document.getElementById('lottery-wrap'),
-            wrapDom = document.getElementById('lottery-main'),
-            move_height = moveDom.offsetHeight,
+            var move_height = moveDom.offsetHeight,
             wrap_height = wrapDom.offsetHeight,
             moveTop =  moveDom.offsetTop;
-            var all_size = $('#lottery-wrap .lottery-list').size();
+            var all_size = list.size();
             // 随机生成停止位置的索引
             var start_index = Math.floor(Math.random() * (all_size - 4));
             var start_top = - item_outer_height * start_index;
             var moveY = start_top;
 
-        $('#lottery-wrap').html($('#lottery-wrap').html() + $('#lottery-wrap').html());
+            const moreScreenGetter = _.template($('#lotterycon-tpl').html());
+
+        $('#lottery-wrap').html(
+            $('#lottery-wrap').html() + moreScreenGetter()
+        );
 
         var justMove = function(flag) {
             timer = nextFrame(function() {
                 moveY -= speed;
-                moveDom.style.top = moveY + 'px';
+                // moveDom.style.top = moveY + 'px';
+                setTopStyle(moveDom, moveY);
                 if (-(moveY) >= move_height) {
                     moveY = 0;
                 }
@@ -428,15 +291,15 @@
             speed = 30;
         }, 5000);
         setout_time = setTimeout(function () {
-            speed = 50;
+            speed = 40;
         }, 7000);
         setout_time = setTimeout(function () {
-            speed = 90;
+            speed = 50;
             $('#lottery-btn').text('可抽奖啦 @_@');
             // 当速度达到最终的设置峰值是，isLock 将会解锁，此时，才可以停止动画
             isLock = false;
             clearTimeout(setout_time);
-        }, 9000);
+        }, 8000);
     }
 
     // 结束抽奖
@@ -484,7 +347,8 @@
         var lastStep = function() {
             time02 = nextFrame(function() {
                 top -= 8;
-                moveDom.style.top = (-stop_top + top) + 'px';
+                // moveDom.style.top = (-stop_top + top) + 'px';
+                setTopStyle(moveDom, (-stop_top + top));
                 if (-top <= left_distance) {
                     lastStep();
                 } else {
@@ -643,7 +507,7 @@
             }
             $('#lottery-result').modal('hide');
         });
-        
+
         // 音乐开关
         var music_local = (local_handle.get('music') == '') ? '1' : local_handle.get('music');
         var music_config = {
@@ -685,43 +549,6 @@
                 local_handle.clear();
                 window.location.reload();
             }
-        });
-
-        // 控制：显示/隐藏 抽奖名单和抽奖奖品显示
-        if (local_handle.get("mingdan_toggle") == 1) {
-            $('#mingdan-con').slideDown();
-            $('#mingdan').hide();
-        } else {
-            $('#mingdan-con').hide();
-            $('#mingdan').show();
-        }
-        if (local_handle.get("liwu_toggle") == 1) {
-            $('#liwu-con').slideDown();
-            $('#liwu').hide();
-        } else {
-            $('#liwu-con').hide();
-            $('#liwu').show();
-        }
-
-        $('#mingdan').click(function () {
-            $(this).fadeIn();
-            $('#mingdan-con').slideDown(1000);
-            local_handle.set("mingdan_toggle", 1);
-        });
-        $('#mingdan-title').click(function() {
-            $('#mingdan-con').slideUp(1000);
-            $('#mingdan').show();
-            local_handle.set("mingdan_toggle", 0);
-        });
-        $('#liwu').click(function () {
-            $(this).fadeOut();
-            $('#liwu-con').slideDown(1000);
-            local_handle.set("liwu_toggle", 1);
-        });
-        $('#liwu-title').click(function() {
-            $('#liwu-con').slideUp(1000);
-            $('#liwu').show();
-            local_handle.set("liwu_toggle", 0);
         });
 
         // 控制：显示/隐藏纪念奖
@@ -772,15 +599,6 @@
         // 开始抽奖按钮
         lottery_btn.click(function () {
             var cur_lottery = $('#lottery-btn').data('award');
-            if (!cur_lottery) {
-                alert('请先设置好奖项再抽奖哦 ^_^');
-                return;
-            }
-
-            if (award_log['award0'+cur_lottery] <= 0) {
-                alert('该奖项已经抽完啦，请选择其它奖项哦 ^_^！');
-                return;
-            }
 
             // 当本轮抽奖结束后，抽奖将会进入短暂休眠期，此时将不会响应抽奖行为
             if (!isStart && !isMove) {
@@ -801,23 +619,7 @@
             if (e.keyCode == 32) {
                 lottery_btn.click();
             }
-            // 一、二、三、纪念奖
-            if (e.keyCode == 49) {
-                $('#award-1').click();
-            }
-            if (e.keyCode == 50) {
-                $('#award-2').click();
-            }
-            if (e.keyCode == 51) {
-                $('#award-3').click();
-            }
-            if (e.keyCode == 52) {
-                $('#award-4').click();
-            }
-            // Enter 按键
-            if (e.keyCode == 13) {
-                $('#modal-close').click();
-            }
+
             // delete按键
             if (e.keyCode == 46) {
                 $('#clear-control').click();
