@@ -5,7 +5,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "http-server"
+    "start": "http-server",
+    "prestart": "node startScript.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,9 @@
   "license": "ISC",
   "devDependencies": {
     "http-server": "^0.11.1"
+  },
+  "dependencies": {
+    "walk": "^2.3.14",
+    "write-json": "^3.0.1"
   }
 }
