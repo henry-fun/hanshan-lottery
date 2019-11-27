@@ -84,7 +84,9 @@ body {
 }
 
 .main {
-    width: 62%;
+    width: 80%;
+    max-width: 60rem;
+    min-width: 600px;
     height: 100%;
     margin: 5rem auto 0 auto;
 }
@@ -262,7 +264,7 @@ aside .switch {
 .wrap-border-main {
     position: absolute;
     width: 100%;
-    height: 75%;
+    height: 70%;
     z-index: -5;
 }
 .wrap-border {
@@ -342,7 +344,7 @@ aside .switch {
     position: relative;
     top: 2%;
     /*height: 640px*/
-    height: 71%;
+    height: 66%;
     overflow: hidden;
     /*border: 3px solid #CB141D;*/
 }
@@ -480,7 +482,7 @@ aside .switch {
 
 .dashboard {
     position: relative;
-    margin: 4rem auto 0 auto;
+    margin: 3rem auto 0 auto;
     text-align: center;
 }
 .btn {
@@ -616,19 +618,11 @@ button.close {
     outline: 0
 }
 .modal.fade .modal-dialog {
-    -webkit-transition: -webkit-transform .3s ease-out;
-    -o-transition: -o-transform .3s ease-out;
     transition: transform .3s ease-out;
-    -webkit-transform: translate(0,-25%);
-    -ms-transform: translate(0,-25%);
-    -o-transform: translate(0,-25%);
     transform: translate(0,-25%);
     /*top: 15%;*/
 }
 .modal.in .modal-dialog {
-    -webkit-transform: translate(0,0);
-    -ms-transform: translate(0,0);
-    -o-transform: translate(0,0);
     transform: translate(0,0)
 }
 .modal-open .modal {
@@ -638,7 +632,7 @@ button.close {
 .modal-dialog {
     position: relative;
     width: auto;
-    height: 80%;
+    height: 100%;
     margin: 10px;
 }
 .modal-content {
@@ -648,40 +642,36 @@ button.close {
     height: 100%;
     outline: 0;
 }
-.modal-content #lottery-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
 
-.modal-content #lottery-avatar {
-    position: absolute;
-    top: 11.2%;
-    left: 19.2%;
-    width: 61%;
-    text-align: center;
-}
-
-.modal-content #lottery-name {
-    position: absolute;
-    bottom: 27%;
-    width: 100%;
-    text-align: center;
-    font-size: 5rem;
-    color: #D9AD61;
-    font-weight: bold;
-    font-family: 'STKaiti', 'KaiTi ';
-}
-
-
-.modal-content #lottery-img {
-    width: 100%;
-    display: none;
-}
 .modal-content #lottery-canvas {
-    width: 100%;
+    background: url(../img/yunwen.jpg) #FFF7E3 repeat;
+    width: 714px;
+    margin: 0 auto;
+    position: relative;
+    transform: scale(0.8);
+    transform-origin: top;
     /*display: none;*/
+}
+#lottery-canvas .bg{
+    position: absolute;
+    top:0;left: 0;
+}
+.avatar-image{
+    display: block;
+    position: absolute;
+    top: 156px;
+    left: 126px;
+    width: 465px;
+}
+.avatar-name {
+    position: absolute;
+    top: 714px;
+    left: 148px;
+    background: beige;
+    font-size: 2em;
+    line-height: 128px;
+    right: 129px;
+    text-align: center;
 }
 .modal-backdrop {
     position: fixed;
@@ -736,12 +726,6 @@ button.close {
     width: 50px;
     height: 50px;
     overflow: scroll
-}
-@media (min-width: 768px) {
-    .modal-dialog {
-        width: 20%;
-        margin: 30px auto
-    }
 }
 
 .snow-canvas {

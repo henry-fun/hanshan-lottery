@@ -22,10 +22,14 @@
     <span aria-hidden="true">&times;</span>
 </button>
 
-<div class="modal fade" id="lottery-result" role="dialog" aria-hidden="true">
+<div class="modal fade in" id="lottery-result" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content" >
-            <canvas id="lottery-canvas"></canvas>
+        <div class="modal-content">
+            <div id="lottery-canvas">
+                <img class="avatar-image" src="./img/avatar/avatar3.jpg">
+                <h2 class="avatar-name">Name</h2>
+                <img class="bg" src="./img/bg.png"/>
+            </div>
         </div>
     </div>
 </div>
@@ -49,11 +53,7 @@
 
         <!--抽奖按钮-->
         <div class="dashboard">
-            <div class="cirle-btn award" id="award-1" data-award="1">一</div>
-            <div class="cirle-btn award" id="award-2" data-award="2">二</div>
             <div class="btn btn-red-outline lottery-btn" id="lottery-btn" data-award="">开始抽奖</div>
-            <div class="cirle-btn award" id="award-3" data-award="3">三</div>
-            <div class="cirle-btn award" id="award-4" data-award="4">纪</div>
         </div>
     </div>
 </div>

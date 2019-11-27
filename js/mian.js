@@ -263,20 +263,7 @@ async function start() {
             award_datas.push(award_tmp);
             local_handle.set("award_"+award, JSON.stringify(award_datas));
         }
-        // 写入上次抽中的奖项记录
-        local_handle.set("award_history", award);
 
-        // 删除已经中奖的人数据
-        local_handle.delete(lottery_datas, lottery_name_en);
-        // 该项奖项将减1
-        award_log['award0'+award] -= 1;
-        local_handle.set('award_log', JSON.stringify(award_log));
-
-        // 绘制最后出现的中奖canvas图
-        drawAward(award, lottery_name_zh, lottery_name_en);
-
-        // 为防止最后出现空白
-        $('#lottery-wrap').html($('#lottery-wrap').html() + $('#lottery-wrap').html());
 
         setTimeout(function() {
             // $(".snow-canvas").snow();
