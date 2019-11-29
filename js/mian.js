@@ -150,17 +150,31 @@ async function start() {
     }
 
     // 结束抽奖
-    function stopLottery() {
-        var moveDom = document.getElementById('lottery-wrap');
+    async function stopLottery() {
 
         // 当isLock 锁还没解锁时， 此时不能停止抽奖，将会抛出没结束的异常
         if (isLock) {
             console.log('还没结束，请稍等...');
             return;
         }
+
+        const btn = document.getElementById('lottery-btn');
+
+        btn.disabled = true;
+
+        speed = 25;await sleep(1000);
+        speed = 20;await sleep(1000);
+        speed = 15;await sleep(1000);
+        speed = 10;await sleep(1000);
+        speed = 7;await sleep(1000);
+        speed = 5;await sleep(1000);
+        speed = 3;await sleep(1000);
+        speed = 2;
+
+        var moveDom = document.getElementById('lottery-wrap');
+
         isStart = false;
         isMove = false;
-        speed = 8;
 
         /*-------- 手动停止的方案 --------*/
         // 得到当前所在高度值
@@ -193,7 +207,7 @@ async function start() {
         // 移动到要到达的指定位置
         var lastStep = function() {
             time02 = nextFrame(function() {
-                top -= 8;
+                top -= 2;
                 // moveDom.style.top = (-stop_top + top) + 'px';
                 setTopStyle(moveDom, (-stop_top + top));
                 if (-top <= left_distance) {
@@ -202,15 +216,6 @@ async function start() {
                     cancelFrame(time02);
                     // 处理中奖后的相关样式效果
                     $('#lottery-wrap .lottery-list').eq(sure_index).addClass('sure-active');
-                    var award_tpl = $('#awardcon-tpl').html();
-                    var award_dom = substitute(award_tpl, award_tmp);
-                    $('#award-0'+award).show();
-                    if (award == 4) {
-                        $('#award-123').hide();
-                        $('#award-04').show();
-                        $('#award04-toggle').css('display', 'inline-block');
-                    }
-                    $('#award-0'+award+' .win').append(award_dom);
                 }
             });
         };
@@ -218,9 +223,7 @@ async function start() {
         // 停止动画
         cancelFrame(timer);
 
-        var award = $('#lottery-btn').data('award');
-        var lottery_name_zh = $('#lottery-wrap .lottery-list').eq(sure_index).data('namezh');
-        var lottery_name_en = $('#lottery-wrap .lottery-list').eq(sure_index).data('nameen');
+        var person = $('#lottery-wrap .lottery-list').eq(sure_index).data();
 
         // 移动完剩下的尺度
         var top = 0;
@@ -232,43 +235,23 @@ async function start() {
             $('#stop-time').fadeIn();
             $('#stop-time').text('贰');
             $('#stop-time').fadeOut();
-        }, 1000);
+        }, 800);
         stop_time = setTimeout(function() {
             $('#stop-time').fadeIn();
             $('#stop-time').text('壹');
-        }, 2000);
+        }, 1600);
         stop_time = setTimeout(function() {
             $('#stop-time').fadeOut();
             clearTimeout(stop_time);
             $('.stop-main').hide();
-        }, 2500);
-
-        // 向 localstorage 中写入中奖人数据
-        var local_award = local_handle.get('award_'+award);
-        var award_tmp = null;
-        if (local_award) {
-            var award_datas = JSON.parse(local_award);
-            award_tmp = {
-                'nameen': lottery_name_en,
-                'namezh': lottery_name_zh
-            };
-            award_datas.push(award_tmp);
-            local_handle.set("award_"+award, JSON.stringify(award_datas));
-        } else {
-            var award_datas = [];
-            award_tmp = {
-                'nameen': lottery_name_en,
-                'namezh': lottery_name_zh
-            };
-            award_datas.push(award_tmp);
-            local_handle.set("award_"+award, JSON.stringify(award_datas));
-        }
+        }, 2400);
 
 
         setTimeout(function() {
+            btn.disabled = false;
             // $(".snow-canvas").snow();
             $('#lottery-result').modal('show');
-            drawAward(award, lottery_name_zh, lottery_name_en);
+            drawAward(person);
 
             can_stop = true;
             clearTimeout(arguments.callee);
@@ -279,54 +262,13 @@ async function start() {
 //            lottery_btn.text('开始抽奖');
 //            lottery_btn.css('background', 'none');
         }, 4200);
-
     }
 
     // canvas 绘制中奖结果
-    function drawAward(award, name_zh, name_en, pic_format) {
-        var canvas = document.getElementById('lottery-canvas');
-        var context = canvas.getContext('2d');
-        if (!pic_format) {
-            pic_format = 'png';
-        }
-        canvas.width = 700;
-        canvas.height = 1300;
-        var back_img = new Image();
-        var avatar = new Image();
-        avatar.src = './img/avatar/'+name_en+'.jpg';
-        back_img.src = './img/award_'+award+'.'+pic_format;
-        back_img.onload = function() {
-            context.drawImage(back_img, 0, 0);
-
-            // 绘制圆形头像
-            circleImg(context, avatar, 158, 178 , 200);
-
-            context.fillStyle = '#D9AD61';
-            context.font = "bold 6rem STKaiti";
-            if (name_zh.length <= 2) {
-                context.fillText(name_zh, 300, 1010);
-            } else if (name_zh.length >= 3) {
-                context.fillText(name_zh, 280, 1000);
-            }
-        };
-    }
-
-    function circleImg(ctx, img, x, y, r) {
-        ctx.save();
-        var d = 2 * r;
-        var cx = x + r;
-        var cy = y + r;
-        ctx.arc(cx, cy, r, 0, 2 * Math.PI);
-        ctx.clip();
-        ctx.drawImage(img, x, y, d, d);
-        ctx.restore();
-    }
-
-    // 简单的模板替换引擎
-    function substitute(str,o,regexp){
-        return  str.replace(regexp || /\\?\{([^{}]+)\}/g, function (match, name) {
-            return (o[name] === undefined) ? '' : o[name];
-        });
+    function drawAward(person) {
+        var canvasEle = document.getElementById('lottery-canvas');
+        canvasEle.querySelector('.avatar-image').style.backgroundImage = `./img/avatar/${person.filename}`;
+        canvasEle.querySelector('.avatar-name').innerText = person.name;
     }
 
     $(function(){
@@ -385,50 +327,6 @@ async function start() {
             }
         });
 
-        // 控制：显示/隐藏纪念奖
-        var award_history = local_handle.get('award_history');
-        if (award_history == 4) {
-            $('#award-04').show();
-            $('#award-123').hide();
-        }
-        $('#award04-toggle').click(function() {
-            if ($('#award-04').is(":hidden")) {
-                $('#award-04').show();
-            } else {
-                $('#award-04').hide();
-            }
-
-            if ($('#award-123').is(":hidden")) {
-                $('#award-123').show();
-            } else {
-                $('#award-123').hide();
-            }
-        });
-
-        // 控制奖项的选择
-        // 1: 一等奖
-        // 2: 二等奖
-        // 3: 三等奖
-        // 4: 纪念奖
-        var select_award = local_handle.get('select_award');
-        if (select_award) {
-            $('.award').eq(select_award-1).addClass('award-active');
-            $('#lottery-btn').data('award', select_award);
-        } else {
-            $('.award').eq(3).addClass('award-active');
-            $('#lottery-btn').data('award', 4);
-        }
-        $('.award').click(function () {
-            if (isStart) {
-                console.error('正在抽奖ing，不允许更改奖项设置哦 ^_^');
-                return false;
-            }
-            local_handle.set('select_award', $(this).data('award'));
-            $('#lottery-btn').data('award', $(this).data('award'));
-            $(this).addClass(function () {
-                return $(this).hasClass('award-active') ? false : 'award-active';
-            }).siblings('.award').removeClass('award-active')
-        });
 
         // 开始抽奖按钮
         lottery_btn.click(function () {
@@ -493,3 +391,10 @@ function shuffle (_array) {
     return array;
 
 };
+
+
+function sleep(time) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, time)
+    })
+}

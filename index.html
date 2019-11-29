@@ -26,7 +26,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div id="lottery-canvas">
-                <img class="avatar-image" src="./img/avatar/avatar3.jpg">
+                <figure class="avatar-image" style="background-image: url(./img/avatar/avatar3.jpg)"></figure>
                 <h2 class="avatar-name">Name</h2>
                 <img class="bg" src="./img/bg.png"/>
             </div>
@@ -53,7 +53,7 @@
 
         <!--抽奖按钮-->
         <div class="dashboard">
-            <div class="btn btn-red-outline lottery-btn" id="lottery-btn" data-award="">开始抽奖</div>
+            <button type="button" class="btn btn-red-outline lottery-btn" id="lottery-btn" data-award="">开始抽奖</button>
         </div>
     </div>
 </div>
@@ -66,7 +66,9 @@
 <!-- 新年祝福框模板 start -->
 <script type="text/template" id="lotterycon-tpl">
     <% _.each(lottery_datas, function (item) { %>
-    <div class="lottery-list" data-id="" data-namezh="<%= item.namezh %>" data-nameen="<%= item.nameen %>">
+    <div class="lottery-list"
+         data-filename="<%= item.filename %>"
+         data-id="<%= item.uid %>" data-name="<%= item.name %>" data-office="<%= item.office %>">
         <div class="lottery-content">
             <em class="beauty border-01"></em>
             <em class="beauty border-02"></em>
@@ -75,7 +77,7 @@
             <div class="border bor-top"></div>
             <div class="border bor-bottom"></div>
             <h3 class="content-title">
-                <span class="lottery-name"><%= item.namezh %></span>
+                <span class="lottery-name"><%= item.name %></span>
                 <% if(item.office) { %>&nbsp;&nbsp;<span class="company">[ <%= item.office %> ]</span><% } %>
             </h3>
         </div>

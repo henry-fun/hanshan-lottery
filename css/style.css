@@ -513,7 +513,7 @@ aside .switch {
 }
 .dashboard .lottery-btn {
     display: inline-block;
-    width: 15%;
+    width: 180px;
     margin: 0 auto;
     padding: 1rem 1.6rem;
     cursor: pointer;
@@ -590,13 +590,13 @@ button.close {
     display: none;
     position: fixed;
     top: 6%;
-    left: 57%;
+    right: 10%;
     -webkit-appearance: none;
     padding: 0;
     cursor: pointer;
     background: 0 0;
     border: 0;
-    z-index: 1050;
+    z-index: 9050;
 }
 .close span {
     font-size: 5rem;
@@ -659,9 +659,12 @@ button.close {
 .avatar-image{
     display: block;
     position: absolute;
+    background-position: center;
+    background-size: contain;
     top: 156px;
     left: 126px;
     width: 465px;
+    height: 465px;
 }
 .avatar-name {
     position: absolute;

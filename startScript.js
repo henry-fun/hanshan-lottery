@@ -34,13 +34,14 @@ function loopFiles(path) {
 
 async function run() {
     const filenames = await loopFiles(avatarPath);
-    const names = filenames.map(function (name) {
-        const sliced = name.split('.');
+    const names = filenames.map(function (filename, idx) {
+        const sliced = filename.split('.');
         const mainInfo = sliced.slice(0, sliced.length - 1);
         return {
-            "nameen": mainInfo.join(''),
-            "namezh": mainInfo[0],
-            "office": mainInfo[1] || ''
+            "id": filename,
+            "name": mainInfo[0],
+            "office": mainInfo[1] || '',
+            "filename": filename
         }
     });
     console.log(names);

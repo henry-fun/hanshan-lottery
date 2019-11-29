@@ -22,10 +22,8 @@
   ],
   "author": "hanshan",
   "license": "ISC",
-  "devDependencies": {
-    "http-server": "^0.11.1"
-  },
   "dependencies": {
+    "http-server": "^0.11.1",
     "walk": "^2.3.14",
     "write-json": "^3.0.1"
   }
