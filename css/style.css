@@ -519,6 +519,7 @@ aside .switch {
     cursor: pointer;
     font-size: 2rem;
     font-family: 'STKaiti', 'KaiTi ';
+    background: #ffbfb7;
 }
 
 .dashboard .lottery-btn:active {

@@ -1,47 +1,37 @@
-async function start() {
-    //除chrome外，其他支持需要在服务器上运行才支持
-    if(!window.localStorage){
-        alert('不支持localstorage，抽奖无法启动！');
-    }
+//除chrome外，其他支持需要在服务器上运行才支持
+if(!window.localStorage){
+    alert('不支持localstorage，抽奖无法启动！');
+}
 
-    // 处理 localstorage 中奖数据
-    var local_handle = {
-        local_item: "lottery_datas",
-        get: function( key ) {
-            return window.localStorage.getItem( key ) || ''
-        },
-
-        set: function( key, val) {
-            window.localStorage.setItem( key, val );
-        },
-        delete: function(datas, name) {
-            var res = [];
-            datas.forEach(function(val, index) {
-                if (name != val.nameen) {
-                    res.push(val);
-                }
-            });
-            var new_datas = JSON.stringify(res);
-            this.set(this.local_item, new_datas);
-            return res;
-        },
-        clear: function() {
-            window.localStorage.clear()
+// 处理 localstorage 中奖数据
+const local_handle = {
+    local_item: "lottery_datas",
+    get: function( key ) {
+        const strResult = window.localStorage.getItem( key );
+        if(!strResult) {
+            return null;
+        }else {
+            return JSON.parse(window.localStorage.getItem( key ))
         }
-    };
+    },
 
-    var award_log = null;
-    if (!local_handle.get("award_log")) {
-        var award_log = window.localStorage.getItem('award_initial');
-        award_log = JSON.parse(award_log);
-    } else {
-        var award_log = window.localStorage.getItem('award_log');
-        award_log = JSON.parse(award_log);
+    set: function( key, val) {
+        window.localStorage.setItem( key, JSON.stringify(val) );
+        return val;
+    },
+    clear: function() {
+        window.localStorage.clear()
     }
+};
 
 
-    const lottery_initial_datas = await fetch('./lottery_data.json').then(d => d.json());
+async function start() {
 
+    let lottery_initial_datas = await fetch('./lottery_data.json').then(d => d.json());
+
+    // 抽中的不在列表里
+    const greedIdList = new Set(greed());
+    lottery_initial_datas = lottery_initial_datas.filter(person => !greedIdList.has(person.id));
     // ---------------- 加载、渲染 滚动抽奖信息数据 ------------
     window.lottery_datas = shuffle(lottery_initial_datas);
 
@@ -253,6 +243,8 @@ async function start() {
             $('#lottery-result').modal('show');
             drawAward(person);
 
+            greed(person.id);
+
             can_stop = true;
             clearTimeout(arguments.callee);
 
@@ -360,6 +352,24 @@ async function start() {
 
     });
 }
+
+function greed(id) {
+    if(id) { // 有ID记录获奖者，并移除列表
+        let greedList = local_handle.get('greed');
+        if(!Array.isArray(greedList)){
+            greedList = local_handle.set('greed', []);
+        }
+
+        greedList.push(id);
+        local_handle.set('greed', greedList);
+        $(`[data-id=${id}]`).remove();
+        window.lottery_datas = window.lottery_datas.filter(item => item.id != id)
+    }else{
+        // 获取已经保存的列表
+        return local_handle.get('greed') || [];
+    }
+}
+
 
 start().catch(err => {
     throw err;
