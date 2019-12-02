@@ -277,7 +277,7 @@ async function start() {
         });
 
         // 音乐开关
-        var music_local = (local_handle.get('music') == '') ? '1' : local_handle.get('music');
+        var music_local = local_handle.get('music') ? true : false;
         var music_config = {
             music: document.getElementById('music'),
             music_bool: (music_local == '1'),
@@ -285,7 +285,7 @@ async function start() {
                 if (this.music_bool) {
                     this.play();
                 } else {
-                    this.music.pause();
+                    this.pause();
                 }
             },
             play: function() {

@@ -1,5 +1,6 @@
 const path = require('path');
 const writeJson = require('write-json');
+const isImage = require('is-image');
 
 const avatarPath = path.join('./', 'img/avatar');
 
@@ -34,14 +35,18 @@ function loopFiles(path) {
 
 async function run() {
     const filenames = await loopFiles(avatarPath);
-    const names = filenames.map(function (filename, idx) {
+    const names = [];
+    filenames.forEach(function (filename, idx) {
         const sliced = filename.split('.');
         const mainInfo = sliced.slice(0, sliced.length - 1);
-        return {
-            "id": filename,
-            "name": mainInfo[0],
-            "office": mainInfo[1] || '',
-            "filename": filename
+        const name = mainInfo[0];
+        if(name && isImage(filename)){
+            names.push({
+                "id": filename.replace('.','_').replace('[','_').replace(']','_'),
+                "name": mainInfo[0],
+                "office": mainInfo[1] || '',
+                "filename": filename
+            })
         }
     });
     console.log(names);

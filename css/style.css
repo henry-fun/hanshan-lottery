@@ -754,7 +754,7 @@ button.close {
 }
 .stop-main #stop-time {
     position: absolute;
-    left: 45%;
+    left: calc(50% - 10rem);
     top: 35%;
     margin: 0 auto;
     padding: 1rem;
