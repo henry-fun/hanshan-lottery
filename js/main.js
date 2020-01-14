@@ -390,6 +390,8 @@ function stopLottery() {
 
 // canvas 绘制中奖结果
 function drawAward(award, name, avatar, pic_format) {
+    console.log(award, name, avatar, pic_format);
+
     var canvas = document.getElementById('lottery-canvas');
     var context = canvas.getContext('2d');
     if (!pic_format) {
@@ -401,13 +403,10 @@ function drawAward(award, name, avatar, pic_format) {
     var avatar_img = new Image();
     avatar_img.src = './img/avatar/' + avatar + '.jpg';
     back_img.onload = function() {
+        // 绘制背景
         context.drawImage(back_img, 0, 0);
 
-        // 绘制圆形头像
-        try {
-            circleImg(context, avatar_img, 158, 178 , 200);
-        } catch (e) {}
-
+        // 绘制名字
         context.fillStyle = '#D9AD61';
         context.font = "bold 6rem STKaiti";
         if (name.length <= 2) {
@@ -415,6 +414,11 @@ function drawAward(award, name, avatar, pic_format) {
         } else if (name.length >= 3) {
             context.fillText(name, 280, 1000);
         }
+
+        // 绘制圆形头像
+        try {
+            circleImg(context, avatar_img, 158, 178 , 200);
+        } catch (e) {}
     };
     back_img.src = './img/award_' + award + '.' + pic_format;
 }
