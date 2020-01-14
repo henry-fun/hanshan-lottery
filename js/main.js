@@ -48,7 +48,35 @@ if (!local_handle.get("lottery_datas")) {
     var lottery_storage = window.localStorage.getItem('lottery_datas');
 }
 var lottery_datas = JSON.parse(lottery_storage);
-$('#lottery-wrap').html( _.template($('#lotterycon-tpl').html(), lottery_datas));
+
+// 绘制候选名单
+function drawList() {
+    var lottery_size = lottery_datas.length;
+    var lottery_disp = [];
+    if (lottery_size !== 0) {
+        for (var i = 0; i < lottery_datas.length; i++) {
+            lottery_disp.push(lottery_datas[i]);
+        }
+        if (lottery_disp.length < 4 * 2) {
+            // 不足一屏：绘制一些防止不够滚动底部出现白屏
+            var i = -1;
+            while (lottery_disp.length < 4 * 2) {
+                i += 1;
+                if (i >= lottery_size) {
+                    i = 0;
+                }
+                lottery_disp.push(lottery_datas[i]);
+            }
+        } else {
+            // 足够一屏：重复绘制前八个防止滚动底部出现白屏
+            for (let i = 0; i < 8; i++) {
+                lottery_disp.push(lottery_datas[i]);
+            }
+        }
+    }
+    $('#lottery-wrap').html(_.template($('#lotterycon-tpl').html())({ data: lottery_disp }));
+}
+drawList();
 
 // ---------------- 加载、渲染 滚动抽奖信息数据 ------------
 if (local_handle.get("award_1")) {
@@ -139,22 +167,20 @@ function justGo (isMove) {
         wrapDom = document.getElementById('lottery-main'),
         move_height = moveDom.offsetHeight,
         wrap_height = wrapDom.offsetHeight,
-        moveTop =  moveDom.offsetTop;
+        loop_height = item_outer_height * lottery_datas.length;
     var all_size = $('#lottery-wrap .lottery-list').size();
     // 随机生成停止位置的索引
     var start_index = Math.floor(Math.random() * (all_size - 4));
     var start_top = - item_outer_height * start_index;
-    var moveY = start_top;
-
-    $('#lottery-wrap').html($('#lottery-wrap').html() + $('#lottery-wrap').html());
+    var distance = - start_top;
 
     var justMove = function(flag) {
         timer = nextFrame(function() {
-            moveY -= speed;
-            moveDom.style.top = moveY + 'px';
-            if (-(moveY) >= move_height) {
-                moveY = 0;
+            distance += speed;
+            if (distance >= loop_height) {
+                distance = distance % loop_height
             }
+            moveDom.style.top = (-distance) + 'px';
             justMove(flag);
         });
     };
