@@ -58,6 +58,12 @@ function drawList() {
     var no_avatar = !_.some(lottery_data, function(item) {
         return item.avatar ? true : false;
     });
+    var no_wish = !_.some(lottery_data, function(item) {
+        return item.wish ? true : false;
+    });
+    var no_company = !_.some(lottery_data, function(item) {
+        return item.company ? true : false;
+    });
     if (lottery_size !== 0) {
         for (var i = 0; i < lottery_data.length; i++) {
             lottery_disp.push(lottery_data[i]);
@@ -79,7 +85,12 @@ function drawList() {
             }
         }
     }
-    $('#lottery-wrap').html(_.template($('#lotterycon-tpl').html())({ data: lottery_disp, no_avatar: no_avatar }));
+    var settings = {
+        data: lottery_disp,
+        no_avatar: no_avatar,
+        simple: no_wish && no_company
+    };
+    $('#lottery-wrap').html(_.template($('#lotterycon-tpl').html())(settings));
 }
 drawList();
 

@@ -189,7 +189,7 @@
 <!-- 新年祝福框模板 start -->
 <script type="text/template" id="lotterycon-tpl">
     <% _.each(data, function (item) { %>
-    <div class="clearfix lottery-list <%= no_avatar ? 'no_avatar' : '' %>" data-id="" data-namezh="<%= item.namezh %>" data-nameen="<%= item.nameen %>">
+    <div class="clearfix lottery-list <%= no_avatar ? 'no_avatar' : '' %> <%= simple ? 'simple' : '' %>" data-id="" data-namezh="<%= item.namezh %>" data-nameen="<%= item.nameen %>">
         <div class="f-l turqoise lottery-avatar">
             <img src="./img/avatar/<%= item.nameen %>.jpg" alt="<%= item.namezh %>">
         </div>

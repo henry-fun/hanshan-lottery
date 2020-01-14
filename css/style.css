@@ -502,6 +502,19 @@ aside .switch {
     font-family: 'STKaiti', 'KaiTi ';
 }
 
+.lottery-list.simple .lottery-content .content-title {
+    text-align: center;
+}
+.lottery-list.simple .lottery-content .content-title .lottery-name {
+    height: 100%;
+    font-size: 5rem;
+    font-weight: 400;
+    line-height: 75px;
+    color: #FD361F;
+    font-weight: bold;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+
 .lottery-list.no_avatar .lottery-avatar {
     display: none;
 }
