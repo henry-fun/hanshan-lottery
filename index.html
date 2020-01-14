@@ -65,11 +65,17 @@
 
         <!--抽奖按钮-->
         <div class="dashboard">
-            <div class="cirle-btn award" id="award-1" data-award="award01">一</div>
-            <div class="cirle-btn award" id="award-2" data-award="award02">二</div>
-            <div class="btn btn-red-outline lottery-btn" id="lottery-btn" data-award="">开始抽奖</div>
-            <div class="cirle-btn award" id="award-3" data-award="award03">三</div>
-            <div class="cirle-btn award" id="award-4" data-award="award04">纪</div>
+            <div class="dashboard-f" id="dashboard-btns-l">
+                <div class="cirle-btn award" id="award-1" data-award="award01">一</div>
+                <div class="cirle-btn award" id="award-2" data-award="award02">二</div>
+            </div>
+            <div class="dashboard-s" id="dashboard-btns-m">
+                <div class="btn btn-red-outline lottery-btn" id="lottery-btn" data-award="">开始抽奖</div>
+            </div>
+            <div class="dashboard-f" id="dashboard-btns-r">
+                <div class="cirle-btn award" id="award-3" data-award="award03">三</div>
+                <div class="cirle-btn award" id="award-4" data-award="award04">纪</div>
+            </div>
         </div>
     </div>
 </div>
@@ -78,6 +84,14 @@
 <canvas class="snow-canvas" speed="3" interaction="true" size="12" count="80" wind-power="-5" image="./img/snow.png" width="1366" height="667"></canvas>
 
 <footer class="footer"></footer>
+
+<!-- 按钮组模板 start -->
+<script type="text/template" id="dashboardbtns-tpl">
+    <% _.each(data, function (item, i) { %>
+        <div class="cirle-btn award" id="award-<%= item.index %>" data-award="<%= item.id %>"><%= item.label %></div>
+    <% }); %>
+</script>
+<!-- 按钮组模板 end -->
 
 <!-- 新年祝福框模板 start -->
 <script type="text/template" id="lotterycon-tpl">

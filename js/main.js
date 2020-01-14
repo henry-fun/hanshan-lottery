@@ -121,6 +121,32 @@ function drawAwardList() {
 }
 drawAwardList();
 
+function drawButtons() {
+    var datas = []
+        i = 1;
+    for (k in award_datas) {
+        var data = award_datas[k];
+        datas.push({
+            index: i,
+            id: k,
+            label: data.char,
+        })
+        i += 1;
+    }
+    var datas_l = [];
+    var datas_r = [];
+    for (let i = 0; i < datas.length; i++) {
+        if (i < datas.length / 2) {
+            datas_l.push(datas[i]);
+        } else {
+            datas_r.push(datas[i]);
+        }
+    }
+    $('#dashboard-btns-l').html(_.template($('#dashboardbtns-tpl').html())({ data: datas_l }));
+    $('#dashboard-btns-r').html(_.template($('#dashboardbtns-tpl').html())({ data: datas_r }));
+}
+drawButtons();
+
 // ---------------- 抽奖动画相关参数配置 ------------
 var nextFrame = window.requestAnimationFrame       ||
                 window.webkitRequestAnimationFrame ||
@@ -519,9 +545,8 @@ $(function(){
         }
         local_handle.set('award_id', $(this).data('award'));
         $('#lottery-btn').data('award', $(this).data('award'));
-        $(this).addClass(function () {
-            return $(this).hasClass('award-active') ? false : 'award-active';
-        }).siblings('.award').removeClass('award-active')
+        $('.award').removeClass('award-active');
+        $(this).addClass('award-active');
     });
 
     // 开始抽奖按钮

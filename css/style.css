@@ -509,9 +509,23 @@ aside .switch {
 }
 
 .dashboard {
-    position: relative;
     margin: 4rem auto 0 auto;
-    text-align: center;
+    display: flex;
+}
+.dashboard-f {
+    flex: 1 1 auto;
+    position: relative;
+}
+.dashboard-s {
+    flex: 0 0 auto;
+    position: relative;
+}
+#dashboard-btns-m {
+    width: 15%;
+}
+#dashboard-btns-l, #dashboard-btns-r {
+    display: flex;
+    justify-content: space-around;
 }
 .btn {
     padding: 1rem 1.5rem;
@@ -541,7 +555,7 @@ aside .switch {
 }
 .dashboard .lottery-btn {
     display: inline-block;
-    width: 15%;
+    width: 100%;
     margin: 0 auto;
     padding: 1rem 1.6rem;
     cursor: pointer;
@@ -565,7 +579,6 @@ aside .switch {
 }
 
 .dashboard .cirle-btn {
-    position: absolute;
     display: inline-block;
     width: 2rem;
     height: 2rem;
@@ -580,18 +593,6 @@ aside .switch {
     -webkit-box-shadow: 0 5px rgba(253, 54, 31, 0.5);
     -moz-box-shadow: 0 5px rgba(253, 54, 31, 0.5);
     box-shadow: 0 5px rgba(253, 54, 31, 0.5);
-}
-.dashboard .cirle-btn:nth-child(1) {
-    left: 15%;
-}
-.dashboard .cirle-btn:nth-child(2) {
-    left: 22%;
-}
-.dashboard .cirle-btn:nth-child(4) {
-    right: 22%;
-}
-.dashboard .cirle-btn:nth-child(5) {
-    right: 15%;
 }
 .award-active {
     background: #ffbfb7;
