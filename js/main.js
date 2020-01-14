@@ -240,6 +240,13 @@ function stopLottery() {
     var left_distance = Math.floor(item_outer_height*2 + (item_outer_height - item_height));
     var sure_index = stop_index + 4;
 
+    // 停止动画
+    cancelFrame(timer);
+
+    // 移动完剩下的尺度
+    var top = 0;
+    var time02 = null;
+
     // 移动到要到达的指定位置
     var lastStep = function() {
         time02 = nextFrame(function() {
@@ -264,16 +271,11 @@ function stopLottery() {
         });
     };
     lastStep();
-    // 停止动画
-    cancelFrame(timer);
 
     var award = $('#lottery-btn').data('award');
     var lottery_name_zh = $('#lottery-wrap .lottery-list').eq(sure_index).data('namezh');
     var lottery_name_en = $('#lottery-wrap .lottery-list').eq(sure_index).data('nameen');
 
-    // 移动完剩下的尺度
-    var top = 0;
-    var time02 = null;
     // 最后的倒计时
     $('.stop-main').fadeIn();
     // $('#stop-time').fadeIn();
