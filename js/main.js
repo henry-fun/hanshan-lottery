@@ -557,7 +557,7 @@ $(function(){
             return;
         }
 
-        if (award_datas[cur_lottery].winners.length > award_datas[cur_lottery].count) {
+        if (award_datas[cur_lottery].winners.length >= award_datas[cur_lottery].count) {
             alert('该奖项已经抽完啦，请选择其它奖项哦 ^_^！');
             return;
         }
