@@ -51,11 +51,13 @@ var lottery_datas = JSON.parse(lottery_storage);
 
 // 绘制候选名单
 function drawList() {
-    var lottery_size = lottery_datas.length;
+    // 随机打乱名单序列 保证概率一致性
+    var lottery_data = _.shuffle(lottery_datas);
+    var lottery_size = lottery_data.length;
     var lottery_disp = [];
     if (lottery_size !== 0) {
-        for (var i = 0; i < lottery_datas.length; i++) {
-            lottery_disp.push(lottery_datas[i]);
+        for (var i = 0; i < lottery_data.length; i++) {
+            lottery_disp.push(lottery_data[i]);
         }
         if (lottery_disp.length < 4 * 2) {
             // 不足一屏：绘制一些防止不够滚动底部出现白屏
@@ -65,12 +67,12 @@ function drawList() {
                 if (i >= lottery_size) {
                     i = 0;
                 }
-                lottery_disp.push(lottery_datas[i]);
+                lottery_disp.push(lottery_data[i]);
             }
         } else {
             // 足够一屏：重复绘制前八个防止滚动底部出现白屏
             for (let i = 0; i < 8; i++) {
-                lottery_disp.push(lottery_datas[i]);
+                lottery_disp.push(lottery_data[i]);
             }
         }
     }
@@ -167,12 +169,8 @@ function justGo (isMove) {
         wrapDom = document.getElementById('lottery-main'),
         move_height = moveDom.offsetHeight,
         wrap_height = wrapDom.offsetHeight,
-        loop_height = item_outer_height * lottery_datas.length;
-    var all_size = $('#lottery-wrap .lottery-list').size();
-    // 随机生成停止位置的索引
-    var start_index = Math.floor(Math.random() * (all_size - 4));
-    var start_top = - item_outer_height * start_index;
-    var distance = - start_top;
+        loop_height = item_outer_height * lottery_datas.length,
+        distance = 0;
 
     var justMove = function(flag) {
         timer = nextFrame(function() {
@@ -251,12 +249,14 @@ function stopLottery() {
     // var end_top = stop_top + left_distance;
     // // 最终定位到第几个对话框的索引
     // var sure_index = Math.floor((end_top + item_height % 2) / item_height) + 1;
+    // // 为防止最后出现空白
+    // $('#lottery-wrap').html($('#lottery-wrap').html() + $('#lottery-wrap').html());
 
     /*-------- 随机数欺骗停止方案 --------*/
     // 获取当前总的抽奖框
-    var lottery_size = $('#lottery-wrap .lottery-list').size();
+    var lottery_size = lottery_datas.length;
     // 随机生成停止位置的索引
-    var stop_index = Math.floor(Math.random() * (lottery_size - 4));
+    var stop_index = Math.floor(Math.random() * lottery_size);
 
     // 将整个抽奖块移动到停止索引所在位置 top 值
     var stop_top = item_outer_height * stop_index;
@@ -351,9 +351,6 @@ function stopLottery() {
 
     // 绘制最后出现的中奖canvas图
     drawAward(award, lottery_name_zh, lottery_name_en);
-
-    // 为防止最后出现空白
-    $('#lottery-wrap').html($('#lottery-wrap').html() + $('#lottery-wrap').html());
 
     setTimeout(function() {
         // $(".snow-canvas").snow();
