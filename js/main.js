@@ -47,7 +47,9 @@ if (!local_handle.get("lottery_datas")) {
 } else {
     var lottery_storage = window.localStorage.getItem('lottery_datas');
 }
-var lottery_datas = JSON.parse(lottery_storage);
+var lottery_datas = _.filter(JSON.parse(lottery_storage), function(item) {
+    return item.hasOwnProperty('id');
+});
 
 // 绘制候选名单
 function drawList() {
