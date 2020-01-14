@@ -30,26 +30,17 @@ var local_handle = {
     }
 };
 
-var award_log = null;
-if (!local_handle.get("award_log")) {
-    var award_log = window.localStorage.getItem('award_initial');
-    award_log = JSON.parse(award_log);
-} else {
-    var award_log = window.localStorage.getItem('award_log');
-    award_log = JSON.parse(award_log);
-}
-
+var award_datas = JSON.parse(local_handle.get('award_datas')
+    ? window.localStorage.getItem('award_datas')
+    : window.localStorage.getItem('award_initial'));
 
 // ---------------- 加载、渲染 滚动抽奖信息数据 ------------
 // 如果得不到数据，则从初始化数据中获取
-if (!local_handle.get("lottery_datas")) {
-    var lottery_storage = window.localStorage.getItem('lottery_initial');
-} else {
-    var lottery_storage = window.localStorage.getItem('lottery_datas');
-}
-var lottery_datas = _.filter(JSON.parse(lottery_storage), function(item) {
-    return item.hasOwnProperty('id');
-});
+var lottery_datas = _.filter(JSON.parse(local_handle.get('lottery_datas')
+    ? window.localStorage.getItem('lottery_datas')
+    : window.localStorage.getItem('lottery_initial')), function(item) {
+        return item.hasOwnProperty('id');
+    });
 
 // 绘制候选名单
 function drawList() {
@@ -97,47 +88,38 @@ function drawList() {
 drawList();
 
 // ---------------- 加载、渲染 滚动抽奖信息数据 ------------
-if (local_handle.get("award_1")) {
-    $('#award-01').show();
-    var award1_storage = window.localStorage.getItem('award_1');
-    var award1_datas = JSON.parse(award1_storage);
-    award1_datas.forEach(function (val, key) {
-        var award_tpl = $('#awardcon-tpl').html();
-        var award_dom = substitute(award_tpl, val);
-        $('#award-01 .win').append(award_dom)
-    });
+function drawAwardList() {
+    var datas = [];
+    var initials = [];
+    for (k in award_datas) {
+        var award_data = award_datas[k];
+        if (award_data.winners.length) {
+            datas.push({
+                label: award_data.label,
+                items: _.map(award_data.winners, function (val) {
+                    return {
+                        label: val.name,
+                        image: val.avatar,
+                    };
+                }),
+            });
+        }
+        if (award_data.items.length) {
+            initials.push({
+                label: award_data.label,
+                items: _.map(award_data.items, function (val) {
+                    return {
+                        label: val.label,
+                        image: val.image,
+                    };
+                }),
+            })
+        }
+    }
+    $('#award-datas').html(_.template($('#listcon-tpl').html())({ data: datas }));
+    $('#award-initial').html(_.template($('#listcon-tpl').html())({ data: initials }));
 }
-if (local_handle.get("award_2")) {
-    $('#award-02').show();
-    var award2_storage = window.localStorage.getItem('award_2');
-    var award2_datas = JSON.parse(award2_storage);
-    award2_datas.forEach(function (val, key) {
-        var award_tpl = $('#awardcon-tpl').html();
-        var award_dom = substitute(award_tpl, val);
-        $('#award-02 .win').append(award_dom)
-    });
-}
-if (local_handle.get("award_3")) {
-    $('#award-03').show();
-    var award3_storage = window.localStorage.getItem('award_3');
-    var award3_datas = JSON.parse(award3_storage);
-    award3_datas.forEach(function (val, key) {
-        var award_tpl = $('#awardcon-tpl').html();
-        var award_dom = substitute(award_tpl, val);
-        $('#award-03 .win').append(award_dom)
-    });
-}
-if (local_handle.get("award_4")) {
-    $('#award04-toggle').css('display', 'inline-block');
-    var award4_storage = window.localStorage.getItem('award_4');
-    var award4_datas = JSON.parse(award4_storage);
-    award4_datas.forEach(function (val, key) {
-        var award_tpl = $('#awardcon-tpl').html();
-        var award_dom = substitute(award_tpl, val);
-        $('#award-04 .win').append(award_dom)
-    });
-}
-
+drawAwardList();
 
 // ---------------- 抽奖动画相关参数配置 ------------
 var nextFrame = window.requestAnimationFrame       ||
@@ -282,6 +264,12 @@ function stopLottery() {
     var left_distance = Math.floor(item_outer_height*2 + (item_outer_height - item_height));
     var sure_index = stop_index + 4;
 
+    // 获得结果
+    var award = $('#lottery-btn').data('award');
+    var id = $('#lottery-wrap .lottery-list').eq(sure_index).data('id');
+    var name = $('#lottery-wrap .lottery-list').eq(sure_index).data('name');
+    var avatar = $('#lottery-wrap .lottery-list').eq(sure_index).data('avatar');
+
     // 停止动画
     cancelFrame(timer);
 
@@ -300,24 +288,11 @@ function stopLottery() {
                 cancelFrame(time02);
                 // 处理中奖后的相关样式效果
                 $('#lottery-wrap .lottery-list').eq(sure_index).addClass('sure-active');
-                var award_tpl = $('#awardcon-tpl').html();
-                var award_dom = substitute(award_tpl, award_tmp);
-                $('#award-0'+award).show();
-                if (award == 4) {
-                    $('#award-123').hide();
-                    $('#award-04').show();
-                    $('#award04-toggle').css('display', 'inline-block');
-                }
-                $('#award-0'+award+' .win').append(award_dom);
+                drawAwardList();
             }
         });
     };
     lastStep();
-
-    var award = $('#lottery-btn').data('award');
-    var id = $('#lottery-wrap .lottery-list').eq(sure_index).data('id');
-    var name = $('#lottery-wrap .lottery-list').eq(sure_index).data('name');
-    var avatar = $('#lottery-wrap .lottery-list').eq(sure_index).data('avatar');
 
     // 最后的倒计时
     $('.stop-main').fadeIn();
@@ -338,35 +313,19 @@ function stopLottery() {
     }, 2500);
 
     // 向 localstorage 中写入中奖人数据
-    var local_award = local_handle.get('award_'+award);
-    var award_tmp = null;
-    if (local_award) {
-        var award_datas = JSON.parse(local_award);
-        award_tmp = {
-            'id': id,
-            'avatar': avatar,
-            'name': name
-        };
-        award_datas.push(award_tmp);
-        local_handle.set("award_"+award, JSON.stringify(award_datas));
-    } else {
-        var award_datas = [];
-        award_tmp = {
-            'id': id,
-            'avatar': avatar,
-            'name': name
-        };
-        award_datas.push(award_tmp);
-        local_handle.set("award_"+award, JSON.stringify(award_datas));
-    }
+    var log = award_datas[award];
+    log.winners.push({
+        'id': id,
+        'avatar': avatar,
+        'name': name
+    });
+    local_handle.set('award_datas', JSON.stringify(award_datas));
+
     // 写入上次抽中的奖项记录
-    local_handle.set("award_history", award);
+    local_handle.set("award_id", award);
 
     // 删除已经中奖的人数据
     local_handle.delete(lottery_datas, id);
-    // 该项奖项将减1
-    award_log['award0'+award] -= 1;
-    local_handle.set('award_log', JSON.stringify(award_log));
 
     // 绘制最后出现的中奖canvas图
     drawAward(award, name, avatar);
@@ -389,20 +348,22 @@ function stopLottery() {
 }
 
 // canvas 绘制中奖结果
-function drawAward(award, name, avatar, pic_format) {
-    console.log(award, name, avatar, pic_format);
-
+function drawAward(award, name, avatar) {
+    var config = award_config[award];
     var canvas = document.getElementById('lottery-canvas');
     var context = canvas.getContext('2d');
-    if (!pic_format) {
-        pic_format = 'png';
-    }
-    canvas.width = 700;
-    canvas.height = 1300;
     var back_img = new Image();
+    var back_img_load = false;
     var avatar_img = new Image();
-    avatar_img.src = './img/avatar/' + avatar + '.jpg';
-    back_img.onload = function() {
+    var avatar_img_load = false;
+    // 绘制函数
+    var draw = function() {
+        if (!back_img_load || !avatar_img_load) {
+            return;
+        }
+        // 设置大小
+        canvas.width = 700;
+        canvas.height = 1300;
         // 绘制背景
         context.drawImage(back_img, 0, 0);
 
@@ -417,10 +378,28 @@ function drawAward(award, name, avatar, pic_format) {
 
         // 绘制圆形头像
         try {
-            circleImg(context, avatar_img, 158, 178 , 200);
+            if (avatar) {
+                circleImg(context, avatar_img, 158, 178 , 200);
+            }
         } catch (e) {}
+    }
+    // 加载头像
+    if (avatar) {
+        avatar_img.onload = function() {
+            avatar_img_load = true;
+            draw();
+        };
+        avatar_img.src = avatar;
+    } else {
+        avatar_img_load = true;
+        draw();
+    }
+    // 加载背景
+    back_img.onload = function() {
+        back_img_load = true;
+        draw();
     };
-    back_img.src = './img/award_' + award + '.' + pic_format;
+    back_img.src = config.image;
 }
 
 function circleImg(ctx, img, x, y, r) {
@@ -432,13 +411,6 @@ function circleImg(ctx, img, x, y, r) {
     ctx.clip();
     ctx.drawImage(img, x, y, d, d);
     ctx.restore();
-}
-
-// 简单的模板替换引擎
-function substitute(str,o,regexp){
-    return  str.replace(regexp || /\\?\{([^{}]+)\}/g, function (match, name) {
-        return (o[name] === undefined) ? '' : o[name];
-    });
 }
 
 $(function(){
@@ -498,81 +470,54 @@ $(function(){
     });
 
     // 控制：显示/隐藏 抽奖名单和抽奖奖品显示
-    if (local_handle.get("mingdan_toggle") == 1) {
-        $('#mingdan-con').slideDown();
-        $('#mingdan').hide();
+    if (local_handle.get("result_switch") == 1) {
+        $('#result-con').slideDown();
+        $('#result-switch').hide();
     } else {
-        $('#mingdan-con').hide();
-        $('#mingdan').show();
+        $('#result-con').hide();
+        $('#result-switch').show();
     }
-    if (local_handle.get("liwu_toggle") == 1) {
-        $('#liwu-con').slideDown();
-        $('#liwu').hide();
+    if (local_handle.get("award_switch") == 1) {
+        $('#award-con').slideDown();
+        $('#award-switch').hide();
     } else {
-        $('#liwu-con').hide();
-        $('#liwu').show();
+        $('#award-con').hide();
+        $('#award-switch').show();
     }
 
-    $('#mingdan').click(function () {
+    $('#result-switch').click(function () {
         $(this).fadeIn();
-        $('#mingdan-con').slideDown(1000);
-        local_handle.set("mingdan_toggle", 1);
+        $('#result-con').slideDown(1000);
+        local_handle.set("result_switch", 1);
     });
-    $('#mingdan-title').click(function() {
-        $('#mingdan-con').slideUp(1000);
-        $('#mingdan').show();
-        local_handle.set("mingdan_toggle", 0);
+    $('#result-title').click(function() {
+        $('#result-con').slideUp(1000);
+        $('#result-switch').show();
+        local_handle.set("result_switch", 0);
     });
-    $('#liwu').click(function () {
+    $('#award-switch').click(function () {
         $(this).fadeOut();
-        $('#liwu-con').slideDown(1000);
-        local_handle.set("liwu_toggle", 1);
+        $('#award-con').slideDown(1000);
+        local_handle.set("award_switch", 1);
     });
-    $('#liwu-title').click(function() {
-        $('#liwu-con').slideUp(1000);
-        $('#liwu').show();
-        local_handle.set("liwu_toggle", 0);
-    });
-
-    // 控制：显示/隐藏纪念奖
-    var award_history = local_handle.get('award_history');
-    if (award_history == 4) {
-        $('#award-04').show();
-        $('#award-123').hide();
-    }
-    $('#award04-toggle').click(function() {
-        if ($('#award-04').is(":hidden")) {
-            $('#award-04').show();
-        } else {
-            $('#award-04').hide();
-        }
-
-        if ($('#award-123').is(":hidden")) {
-            $('#award-123').show();
-        } else {
-            $('#award-123').hide();
-        }
+    $('#award-title').click(function() {
+        $('#award-con').slideUp(1000);
+        $('#award-switch').show();
+        local_handle.set("award_switch", 0);
     });
 
     // 控制奖项的选择
-    // 1: 一等奖
-    // 2: 二等奖
-    // 3: 三等奖
-    // 4: 纪念奖
-    var select_award = local_handle.get('select_award');
-    if (select_award) {
-        $('.award').eq(select_award-1).addClass('award-active');
-        $('#lottery-btn').data('award', select_award);
-    } else {
-        $('.award').eq(3).addClass('award-active');
-        $('#lottery-btn').data('award', 4);
+    var award_id = local_handle.get('award_id') || $('.award:last').data('award');
+    if (award_id) {
+        $('.award[data-award="' + award_id + '"]').addClass('award-active');
+        $('#lottery-btn').data('award', award_id);
     }
     $('.award').click(function () {
         if (isStart) {
             console.error('正在抽奖ing，不允许更改奖项设置哦 ^_^');
             return false;
         }
-        local_handle.set('select_award', $(this).data('award'));
+        local_handle.set('award_id', $(this).data('award'));
         $('#lottery-btn').data('award', $(this).data('award'));
         $(this).addClass(function () {
             return $(this).hasClass('award-active') ? false : 'award-active';
@@ -587,7 +532,7 @@ $(function(){
             return;
         }
 
-        if (award_log['award0'+cur_lottery] <= 0) {
+        if (award_datas[cur_lottery].winners.length > award_datas[cur_lottery].count) {
             alert('该奖项已经抽完啦，请选择其它奖项哦 ^_^！');
             return;
         }

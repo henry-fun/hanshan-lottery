@@ -127,12 +127,12 @@ aside .switch {
 #award-01,#award-02,#award-03 {
     display: none;
 }
-.award-con {
+.list-con {
     margin-top: 0.5rem;
     padding: 2%;
 }
 
-.award-con .award-title {
+.list-con .list-title {
     width: 80%;
     margin: 0 auto;
     padding-bottom: 1rem;
@@ -143,21 +143,23 @@ aside .switch {
     font-family: 'STKaiti', 'KaiTi ';
     border-bottom: 2px solid #FD361F;
 }
-#liwu-con .award-title {
+#award-con .list-title {
     padding-bottom: 0.5rem;
     margin-bottom: 0.5rem;
 }
-.award-con .win {
+.list-con .list-content {
     margin-top: 0.6rem;
 }
-.award-con .win .win-li {
+.list-con .list-content .list-item {
     padding: 0 5% 0 20%;
     margin: 0.5rem auto 0 auto;
+    display: flex;
+    align-items: center;
 }
-#liwu-con .win .win-li {
+#award-con .list-content .list-item {
     margin: 0.2rem auto 0 auto;
 }
-.award-con .win .delete {
+.list-con .list-content .list-item .delete {
     display: none;
     padding: 0.2rem;
     margin:1rem 0 0 2rem;
@@ -167,52 +169,24 @@ aside .switch {
     border-radius: 5rem;
     border: 1px solid #FD361F;
 }
-.award-con .win .name {
-    line-height: 4rem;
+.list-con .list-content .list-item .label {
     margin-left: 2rem;
+    padding: 1rem 0;
+    line-height: 2rem;
     color: #2980B9;
     font-size: 2rem;
     font-family: 'STKaiti', 'KaiTi ';
 }
-#liwu-con .win .name {
+#award-con .list-content .list-item .label {
     font-size: 1.5rem;
 }
-.award-con .win .avatar {
+.list-con .list-content .list-item .image {
     width: 2.8rem;
     height: 2.8rem;
     border-radius: 100%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-}
-#award-04 {
-    display: none;
-}
-
-#award-04 .win .name {
-    line-height: 3rem;
-    font-size: 1.8rem;
-}
-#award-04 .win .avatar img {
-    width: 3rem;
-    height: 3rem;
-}
-#award-04 .win .win-li {
-    margin: 0 auto 0 auto;
-}
-
-#award04-toggle {
-    display: none;
-    width: 50%;
-    margin: 1rem auto 1rem auto;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    text-decoration: none;
-    color: #2980B9;
-    font-size: 2rem;
-    font-family: 'STKaiti', 'KaiTi ';
-    border-radius: 2px;
-    border: 1px solid #2980B9;
 }
 
 @keyframes rotateFront{

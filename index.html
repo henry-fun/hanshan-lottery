@@ -12,126 +12,19 @@
 
 <!--左侧中奖名单展示-->
 <aside class="aside-left">
-    <div class="aside-main" id="mingdan-con">
-        <div class="btn btn-red-outline" data-toggle="modal" id="mingdan-title">中奖名单</div>
-        <div class="award-main">
-            <div id="award-123">
-                <div class="award-con" id="award-01">
-                    <h3 class="award-title">一等奖</h3>
-                    <ul class="win"></ul>
-                </div>
-                <div class="award-con" id="award-02">
-                    <h3 class="award-title">二等奖</h3>
-                    <ul class="win"></ul>
-                </div>
-                <div class="award-con" id="award-03">
-                    <h3 class="award-title">三等奖</h3>
-                    <ul class="win"></ul>
-                </div>
-            </div>
-            <div class="award-con" id="award-04">
-                <h3 class="award-title">纪念奖</h3>
-                <ul class="win"></ul>
-            </div>
-            <a href="javascript:;" id="award04-toggle" class="more">查看更多</a>
-        </div>
+    <div class="aside-main" id="result-con">
+        <div class="btn btn-red-outline" data-toggle="modal" id="result-title">中奖名单</div>
+        <div id="award-datas" class="award-main"></div>
     </div>
-    <img src="./img/lantern.png" alt="" width="85" id="mingdan" class="switch">
+    <img src="./img/lantern.png" alt="" width="85" id="result-switch" class="switch">
 </aside>
 <!--右侧奖品名单展示-->
 <aside class="aside-right">
-    <div class="aside-main" id="liwu-con">
-        <div class="btn btn-red-outline" data-toggle="modal" id="liwu-title">新年礼物</div>
-        <div class="award-main">
-            <div class="award-con">
-                <h3 class="award-title">一等奖</h3>
-                <ul class="win">
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/canon.jpg"/>
-                        </div>
-                        <div class="f-l name">佳能微单</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="award-con">
-                <h3 class="award-title">二等奖</h3>
-                <ul class="win">
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/kindle.jpg"/>
-                        </div>
-                        <div class="f-l name">Kindle 阅读器</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/kule.jpg"/>
-                        </div>
-                        <div class="f-l name">酷乐视投影机</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/beats.jpg"/>
-                        </div>
-                        <div class="f-l name">Beats动力耳机</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="award-con">
-                <h3 class="award-title">三等奖</h3>
-                <ul class="win">
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/jingdong.jpg"/>
-                        </div>
-                        <div class="f-l name">京东购物E卡</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/yashua.jpg"/>
-                        </div>
-                        <div class="f-l name">飞利浦电动牙刷</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/anmo.jpg"/>
-                        </div>
-                        <div class="f-l name">颈椎按摩器</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="award-con">
-                <h3 class="award-title">纪念奖</h3>
-                <ul class="win">
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/chongdian.jpg"/>
-                        </div>
-                        <div class="f-l name">罗马仕充电宝</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/nuanshou.jpg"/>
-                        </div>
-                        <div class="f-l name">马卡龙  暖手宝</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/bao.jpg"/>
-                        </div>
-                        <div class="f-l name">旅行双肩包</div>
-                    </li>
-                    <li class="clearfix win-li">
-                        <div class="f-l avatar">
-                            <img width="34" src="./img/gift/beizi.jpg"/>
-                        </div>
-                        <div class="f-l name">乐扣马克保温杯</div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div class="aside-main" id="award-con">
+        <div class="btn btn-red-outline" data-toggle="modal" id="award-title">新年礼物</div>
+        <div id="award-initial" class="award-main"></div>
     </div>
-    <img src="./img/lantern.png" alt="" width="85" id="liwu" class="switch">
+    <img src="./img/lantern.png" alt="" width="85" id="award-switch" class="switch">
 </aside>
 
 <!--倒计时展示-->
@@ -172,11 +65,11 @@
 
         <!--抽奖按钮-->
         <div class="dashboard">
-            <div class="cirle-btn award" id="award-1" data-award="1">一</div>
-            <div class="cirle-btn award" id="award-2" data-award="2">二</div>
+            <div class="cirle-btn award" id="award-1" data-award="award01">一</div>
+            <div class="cirle-btn award" id="award-2" data-award="award02">二</div>
             <div class="btn btn-red-outline lottery-btn" id="lottery-btn" data-award="">开始抽奖</div>
-            <div class="cirle-btn award" id="award-3" data-award="3">三</div>
-            <div class="cirle-btn award" id="award-4" data-award="4">纪</div>
+            <div class="cirle-btn award" id="award-3" data-award="award03">三</div>
+            <div class="cirle-btn award" id="award-4" data-award="award04">纪</div>
         </div>
     </div>
 </div>
@@ -191,7 +84,7 @@
     <% _.each(data, function (item) { %>
     <div class="clearfix lottery-list <%= no_avatar ? 'no_avatar' : '' %> <%= simple ? 'simple' : '' %>" data-id="<%= item.id %>" data-name="<%= item.name %>" data-avatar="<%= item.avatar %>">
         <div class="f-l turqoise lottery-avatar">
-            <img src="./img/avatar/<%= item.avatar %>.jpg" alt="<%= item.avatar %>">
+            <img src="<%= item.avatar %>" alt="<%= item.avatar %>">
         </div>
         <div class="f-l lottery-content">
             <em class="beauty border-01"></em>
@@ -217,12 +110,21 @@
 <!-- 新年祝福框模板 end -->
 
 <!-- 中奖者数据展示模板 start -->
-<script type="text/template" id="awardcon-tpl">
-    <li class="clearfix win-li">
-        <div class="f-l avatar" style="background-image: url('./img/avatar/{avatar}.jpg')"></div>
-        <div class="f-l name">{name}</div>
-        <a class="f-l delete" href="javascript:;">&times;</a>
-    </li>
+<script type="text/template" id="listcon-tpl">
+    <% _.each(data, function (award) { %>
+        <div class="list-con">
+            <h3 class="list-title"><%= award.label %></h3>
+            <ul class="list-content">
+                <% _.each(award.items, function (item) { %>
+                    <li class="clearfix list-item">
+                        <div class="f-l image" style="background-image: url('<%= item.image %>')"></div>
+                        <div class="f-l label"><%= item.label %></div>
+                        <a class="f-l delete" href="javascript:;">&times;</a>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    <% }); %>
 </script>
 <!-- 中奖者数据展示模板 end -->
 
