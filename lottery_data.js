@@ -189,17 +189,19 @@ var award_config = {
 
 // 初始化数据
 (function() {
-    if (!localStorage.getItem('lottery_initial')) {
-        var data_str = JSON.stringify(lottery_initial_datas);
-        localStorage.setItem('lottery_initial', data_str);
+    // 计算初始化数据
+    var str_lottery = JSON.stringify(lottery_initial_datas);
+    var award_data = {};
+    for (k in award_config) {
+        award_data[k] = Object.assign({
+            winners: [],
+        }, award_config[k]);
     }
-    if (!localStorage.getItem('award_initial')) {
-        var data = {};
-        for (k in award_config) {
-            data[k] = Object.assign({
-                winners: [],
-            }, award_config[k]);
-        }
-        localStorage.setItem('award_initial', JSON.stringify(data));
+    var str_award = JSON.stringify(award_data);
+    // 配置数据有变化直接清空
+    if (localStorage.getItem('lottery_initial') !== str_lottery || localStorage.getItem('award_initial') !== str_award) {
+        window.localStorage.clear()
     }
+    localStorage.setItem('lottery_initial', str_lottery);
+    localStorage.setItem('award_initial', str_award);
 })();
