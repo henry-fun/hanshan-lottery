@@ -140,14 +140,15 @@
     <div class="back"></div>
 </div>
 
-<button class="close" id="modal-close" data-dismiss="modal">
-    <span aria-hidden="true">&times;</span>
-</button>
-
 <div class="modal fade" id="lottery-result" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" >
-            <canvas id="lottery-canvas"></canvas>
+            <div class="modal-inner">
+                <button class="close" id="modal-close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <canvas id="lottery-canvas"></canvas>
+            </div>
         </div>
     </div>
 </div>

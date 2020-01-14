@@ -602,9 +602,10 @@ aside .switch {
 }
 button.close {
     display: none;
-    position: fixed;
-    top: 6%;
-    left: 57%;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
     -webkit-appearance: none;
     padding: 0;
     cursor: pointer;
@@ -663,6 +664,12 @@ button.close {
     bottom: 0;
     height: 100%;
     outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content .modal-inner {
+    position: relative;
 }
 .modal-content #lottery-back {
     position: absolute;
@@ -835,7 +842,3 @@ footer {
     background: url("../img/clear.png") 0 0 no-repeat;
     background-size: contain;
 }
-
-
-
-
