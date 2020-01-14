@@ -55,6 +55,9 @@ function drawList() {
     var lottery_data = _.shuffle(lottery_datas);
     var lottery_size = lottery_data.length;
     var lottery_disp = [];
+    var no_avatar = !_.some(lottery_data, function(item) {
+        return item.avatar ? true : false;
+    });
     if (lottery_size !== 0) {
         for (var i = 0; i < lottery_data.length; i++) {
             lottery_disp.push(lottery_data[i]);
@@ -76,7 +79,7 @@ function drawList() {
             }
         }
     }
-    $('#lottery-wrap').html(_.template($('#lotterycon-tpl').html())({ data: lottery_disp }));
+    $('#lottery-wrap').html(_.template($('#lotterycon-tpl').html())({ data: lottery_disp, no_avatar: no_avatar }));
 }
 drawList();
 

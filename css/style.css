@@ -502,6 +502,20 @@ aside .switch {
     font-family: 'STKaiti', 'KaiTi ';
 }
 
+.lottery-list.no_avatar .lottery-avatar {
+    display: none;
+}
+.lottery-list.no_avatar .lottery-content {
+    margin-left: 7rem;
+    width: 75%;
+}
+.lottery-list.no_avatar .lottery-content::before {
+    display: none;
+}
+.lottery-list.no_avatar .lottery-content::after {
+    display: none;
+}
+
 .dashboard {
     position: relative;
     margin: 4rem auto 0 auto;
