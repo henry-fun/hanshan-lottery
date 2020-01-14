@@ -270,13 +270,13 @@ function stopLottery() {
     cancelFrame(timer);
 
     // 移动完剩下的尺度
-    var top = 0;
     var time02 = null;
+    var time = new Date().valueOf();
 
     // 移动到要到达的指定位置
     var lastStep = function() {
         time02 = nextFrame(function() {
-            top -= 8;
+            var top = -((new Date().valueOf() - time) / 3000) * left_distance;
             moveDom.style.top = (-stop_top + top) + 'px';
             if (-top <= left_distance) {
                 lastStep();
