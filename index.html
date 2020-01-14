@@ -189,9 +189,9 @@
 <!-- 新年祝福框模板 start -->
 <script type="text/template" id="lotterycon-tpl">
     <% _.each(data, function (item) { %>
-    <div class="clearfix lottery-list <%= no_avatar ? 'no_avatar' : '' %> <%= simple ? 'simple' : '' %>" data-id="" data-namezh="<%= item.namezh %>" data-nameen="<%= item.nameen %>">
+    <div class="clearfix lottery-list <%= no_avatar ? 'no_avatar' : '' %> <%= simple ? 'simple' : '' %>" data-id="<%= item.id %>" data-name="<%= item.name %>" data-avatar="<%= item.avatar %>">
         <div class="f-l turqoise lottery-avatar">
-            <img src="./img/avatar/<%= item.nameen %>.jpg" alt="<%= item.namezh %>">
+            <img src="./img/avatar/<%= item.avatar %>.jpg" alt="<%= item.avatar %>">
         </div>
         <div class="f-l lottery-content">
             <em class="beauty border-01"></em>
@@ -202,7 +202,7 @@
             <div class="border bor-bottom"></div>
             <div class="content-center">
                 <h3 class="content-title">
-                    <span class="lottery-name"><%= item.namezh %></span>
+                    <span class="lottery-name"><%= item.name %></span>
                     <span class="company" style="display: <%= item.company ? 'inline' : 'none' %>">&nbsp;&nbsp;<%= item.company %></span>
                 </h3>
                 <div class="content-detail" style="display: <%= item.wish ? 'block' : 'none' %>">
@@ -220,9 +220,9 @@
 <script type="text/template" id="awardcon-tpl">
     <li class="clearfix win-li">
         <div class="f-l avatar">
-            <img width="34" src="./img/avatar/{nameen}.jpg"/>
+            <img width="34" src="./img/avatar/{avatar}.jpg"/>
         </div>
-        <div class="f-l name">{namezh}</div>
+        <div class="f-l name">{name}</div>
         <a class="f-l delete" href="javascript:;">&times;</a>
     </li>
 </script>

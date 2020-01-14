@@ -14,10 +14,10 @@ var local_handle = {
     set: function( key, val) {
         window.localStorage.setItem( key, val );
     },
-    delete: function(datas, name) {
+    delete: function(datas, id) {
         var res = [];
         datas.forEach(function(val, index) {
-            if (name != val.nameen) {
+            if (id != val.id) {
                 res.push(val);
             }
         });
@@ -313,8 +313,9 @@ function stopLottery() {
     lastStep();
 
     var award = $('#lottery-btn').data('award');
-    var lottery_name_zh = $('#lottery-wrap .lottery-list').eq(sure_index).data('namezh');
-    var lottery_name_en = $('#lottery-wrap .lottery-list').eq(sure_index).data('nameen');
+    var id = $('#lottery-wrap .lottery-list').eq(sure_index).data('id');
+    var name = $('#lottery-wrap .lottery-list').eq(sure_index).data('name');
+    var avatar = $('#lottery-wrap .lottery-list').eq(sure_index).data('avatar');
 
     // 最后的倒计时
     $('.stop-main').fadeIn();
@@ -340,16 +341,18 @@ function stopLottery() {
     if (local_award) {
         var award_datas = JSON.parse(local_award);
         award_tmp = {
-            'nameen': lottery_name_en,
-            'namezh': lottery_name_zh
+            'id': id,
+            'avatar': avatar,
+            'name': name
         };
         award_datas.push(award_tmp);
         local_handle.set("award_"+award, JSON.stringify(award_datas));
     } else {
         var award_datas = [];
         award_tmp = {
-            'nameen': lottery_name_en,
-            'namezh': lottery_name_zh
+            'id': id,
+            'avatar': avatar,
+            'name': name
         };
         award_datas.push(award_tmp);
         local_handle.set("award_"+award, JSON.stringify(award_datas));
@@ -358,18 +361,18 @@ function stopLottery() {
     local_handle.set("award_history", award);
 
     // 删除已经中奖的人数据
-    local_handle.delete(lottery_datas, lottery_name_en);
+    local_handle.delete(lottery_datas, id);
     // 该项奖项将减1
     award_log['award0'+award] -= 1;
     local_handle.set('award_log', JSON.stringify(award_log));
 
     // 绘制最后出现的中奖canvas图
-    drawAward(award, lottery_name_zh, lottery_name_en);
+    drawAward(award, name, avatar);
 
     setTimeout(function() {
         // $(".snow-canvas").snow();
         $('#lottery-result').modal('show');
-        drawAward(award, lottery_name_zh, lottery_name_en);
+        drawAward(award, name, avatar);
 
         can_stop = true;
         clearTimeout(arguments.callee);
@@ -384,7 +387,7 @@ function stopLottery() {
 }
 
 // canvas 绘制中奖结果
-function drawAward(award, name_zh, name_en, pic_format) {
+function drawAward(award, name, avatar, pic_format) {
     var canvas = document.getElementById('lottery-canvas');
     var context = canvas.getContext('2d');
     if (!pic_format) {
@@ -393,23 +396,23 @@ function drawAward(award, name_zh, name_en, pic_format) {
     canvas.width = 700;
     canvas.height = 1300;
     var back_img = new Image();
-    var avatar = new Image();
-    avatar.src = './img/avatar/'+name_en+'.jpg';
-    back_img.src = './img/award_'+award+'.'+pic_format;
+    var avatar_img = new Image();
+    avatar_img.src = './img/avatar/' + avatar + '.jpg';
     back_img.onload = function() {
         context.drawImage(back_img, 0, 0);
 
         // 绘制圆形头像
-        circleImg(context, avatar, 158, 178 , 200);
+        circleImg(context, avatar_img, 158, 178 , 200);
 
         context.fillStyle = '#D9AD61';
         context.font = "bold 6rem STKaiti";
-        if (name_zh.length <= 2) {
-            context.fillText(name_zh, 300, 1010);
-        } else if (name_zh.length >= 3) {
-            context.fillText(name_zh, 280, 1000);
+        if (name.length <= 2) {
+            context.fillText(name, 300, 1010);
+        } else if (name.length >= 3) {
+            context.fillText(name, 280, 1000);
         }
     };
+    back_img.src = './img/award_' + award + '.' + pic_format;
 }
 
 function circleImg(ctx, img, x, y, r) {
