@@ -6,7 +6,7 @@ if(!window.localStorage){
 
 // 处理 localstorage 中奖数据
 var local_handle = {
-    local_item: "lottery_datas",
+    local_item: 'lottery_datas',
     get: function( key ) {
         return window.localStorage.getItem( key ) || ''
     },
@@ -348,7 +348,7 @@ function stopLottery() {
     local_handle.set('award_datas', JSON.stringify(award_datas));
 
     // 写入上次抽中的奖项记录
-    local_handle.set("award_id", award);
+    local_handle.set('award_id', award);
 
     // 删除已经中奖的人数据
     local_handle.delete(lottery_datas, id);
@@ -357,7 +357,7 @@ function stopLottery() {
     drawAward(award, name, avatar);
 
     setTimeout(function() {
-        // $(".snow-canvas").snow();
+        // $('.snow-canvas').snow();
         $('#lottery-result').modal('show');
         drawAward(award, name, avatar);
 
@@ -395,7 +395,7 @@ function drawAward(award, name, avatar) {
 
         // 绘制名字
         context.fillStyle = '#D9AD61';
-        context.font = "bold 6rem STKaiti";
+        context.font = 'bold 6rem STKaiti';
         if (name.length <= 2) {
             context.fillText(name, 300, 1010);
         } else if (name.length >= 3) {
@@ -496,14 +496,14 @@ $(function(){
     });
 
     // 控制：显示/隐藏 抽奖名单和抽奖奖品显示
-    if (local_handle.get("result_switch") == 1) {
+    if (local_handle.get('result_switch') == 1) {
         $('#result-con').slideDown();
         $('#result-switch').hide();
     } else {
         $('#result-con').hide();
         $('#result-switch').show();
     }
-    if (local_handle.get("award_switch") == 1) {
+    if (local_handle.get('award_switch') == 1) {
         $('#award-con').slideDown();
         $('#award-switch').hide();
     } else {
@@ -514,22 +514,22 @@ $(function(){
     $('#result-switch').click(function () {
         $(this).fadeIn();
         $('#result-con').slideDown(1000);
-        local_handle.set("result_switch", 1);
+        local_handle.set('result_switch', 1);
     });
     $('#result-title').click(function() {
         $('#result-con').slideUp(1000);
         $('#result-switch').show();
-        local_handle.set("result_switch", 0);
+        local_handle.set('result_switch', 0);
     });
     $('#award-switch').click(function () {
         $(this).fadeOut();
         $('#award-con').slideDown(1000);
-        local_handle.set("award_switch", 1);
+        local_handle.set('award_switch', 1);
     });
     $('#award-title').click(function() {
         $('#award-con').slideUp(1000);
         $('#award-switch').show();
-        local_handle.set("award_switch", 0);
+        local_handle.set('award_switch', 0);
     });
 
     // 控制奖项的选择
