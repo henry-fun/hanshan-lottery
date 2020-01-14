@@ -404,7 +404,9 @@ function drawAward(award, name, avatar, pic_format) {
         context.drawImage(back_img, 0, 0);
 
         // 绘制圆形头像
-        circleImg(context, avatar_img, 158, 178 , 200);
+        try {
+            circleImg(context, avatar_img, 158, 178 , 200);
+        } catch (e) {}
 
         context.fillStyle = '#D9AD61';
         context.font = "bold 6rem STKaiti";
