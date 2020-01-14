@@ -177,10 +177,13 @@ aside .switch {
 #liwu-con .win .name {
     font-size: 1.5rem;
 }
-.award-con .win .avatar img {
-    width: 4rem;
-    height: 4rem;
+.award-con .win .avatar {
+    width: 2.8rem;
+    height: 2.8rem;
     border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 #award-04 {
     display: none;
