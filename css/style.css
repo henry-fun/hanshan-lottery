@@ -342,6 +342,7 @@ aside .switch {
     top: 50%;
 }
 .wrap-main {
+    margin: 0 8rem;
     position: relative;
     top: 2%;
     /*height: 640px*/
@@ -370,16 +371,18 @@ aside .switch {
     position: relative;
     margin: 0 auto 2rem auto;
     width: 100%;
+    display: flex;
 }
 .lottery-avatar {
+    flex: 0 0 auto;
     height: 90px;
     width: 90px;
-    margin-left: 8rem;
     margin-top: 1.5rem;
     -webkit-border-radius: 90px;
     -moz-border-radius: 90px;
     border-radius: 90px;
     overflow: hidden;
+    transform: translateX(8px);
 }
 .lottery-avatar.turqoise {
     -webkit-box-shadow: 0 0 0 4px white, inset 0 0 0 1px rgba(254,54,31,0.2), 0 0 0 8px rgba(254,54,31,0.9);
@@ -391,10 +394,10 @@ aside .switch {
     height: 90px;
 }
 .lottery-content {
+    flex: 1 1 auto;
     position: relative;
     margin-left: 3rem;
     padding: 2rem;
-    width: 65%;
     height: 7rem;
     -webkit-transition: all .4s;
     -moz-transition: all .4s;
@@ -522,8 +525,7 @@ aside .switch {
     display: none;
 }
 .lottery-list.no_avatar .lottery-content {
-    margin-left: 7rem;
-    width: 75%;
+    margin-left: 0;
 }
 .lottery-list.no_avatar .lottery-content::before {
     display: none;
