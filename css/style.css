@@ -127,12 +127,12 @@ aside .switch {
 #award-01,#award-02,#award-03 {
     display: none;
 }
-.award-con {
+.list-con {
     margin-top: 0.5rem;
     padding: 2%;
 }
 
-.award-con .award-title {
+.list-con .list-title {
     width: 80%;
     margin: 0 auto;
     padding-bottom: 1rem;
@@ -143,21 +143,23 @@ aside .switch {
     font-family: 'STKaiti', 'KaiTi ';
     border-bottom: 2px solid #FD361F;
 }
-#liwu-con .award-title {
+#award-con .list-title {
     padding-bottom: 0.5rem;
     margin-bottom: 0.5rem;
 }
-.award-con .win {
+.list-con .list-content {
     margin-top: 0.6rem;
 }
-.award-con .win .win-li {
+.list-con .list-content .list-item {
     padding: 0 5% 0 20%;
     margin: 0.5rem auto 0 auto;
+    display: flex;
+    align-items: center;
 }
-#liwu-con .win .win-li {
+#award-con .list-content .list-item {
     margin: 0.2rem auto 0 auto;
 }
-.award-con .win .delete {
+.list-con .list-content .list-item .delete {
     display: none;
     padding: 0.2rem;
     margin:1rem 0 0 2rem;
@@ -167,49 +169,24 @@ aside .switch {
     border-radius: 5rem;
     border: 1px solid #FD361F;
 }
-.award-con .win .name {
-    line-height: 4rem;
+.list-con .list-content .list-item .label {
     margin-left: 2rem;
+    padding: 1rem 0;
+    line-height: 2rem;
     color: #2980B9;
     font-size: 2rem;
     font-family: 'STKaiti', 'KaiTi ';
 }
-#liwu-con .win .name {
+#award-con .list-content .list-item .label {
     font-size: 1.5rem;
 }
-.award-con .win .avatar img {
-    width: 4rem;
-    height: 4rem;
+.list-con .list-content .list-item .image {
+    width: 2.8rem;
+    height: 2.8rem;
     border-radius: 100%;
-}
-#award-04 {
-    display: none;
-}
-
-#award-04 .win .name {
-    line-height: 3rem;
-    font-size: 1.8rem;
-}
-#award-04 .win .avatar img {
-    width: 3rem;
-    height: 3rem;
-}
-#award-04 .win .win-li {
-    margin: 0 auto 0 auto;
-}
-
-#award04-toggle {
-    display: none;
-    width: 50%;
-    margin: 1rem auto 1rem auto;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    text-decoration: none;
-    color: #2980B9;
-    font-size: 2rem;
-    font-family: 'STKaiti', 'KaiTi ';
-    border-radius: 2px;
-    border: 1px solid #2980B9;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 @keyframes rotateFront{
@@ -339,6 +316,7 @@ aside .switch {
     top: 50%;
 }
 .wrap-main {
+    margin: 0 8rem;
     position: relative;
     top: 2%;
     /*height: 640px*/
@@ -367,16 +345,18 @@ aside .switch {
     position: relative;
     margin: 0 auto 2rem auto;
     width: 100%;
+    display: flex;
 }
 .lottery-avatar {
+    flex: 0 0 auto;
     height: 90px;
     width: 90px;
-    margin-left: 8rem;
     margin-top: 1.5rem;
     -webkit-border-radius: 90px;
     -moz-border-radius: 90px;
     border-radius: 90px;
     overflow: hidden;
+    transform: translateX(8px);
 }
 .lottery-avatar.turqoise {
     -webkit-box-shadow: 0 0 0 4px white, inset 0 0 0 1px rgba(254,54,31,0.2), 0 0 0 8px rgba(254,54,31,0.9);
@@ -388,10 +368,10 @@ aside .switch {
     height: 90px;
 }
 .lottery-content {
+    flex: 1 1 auto;
     position: relative;
     margin-left: 3rem;
     padding: 2rem;
-    width: 65%;
     height: 7rem;
     -webkit-transition: all .4s;
     -moz-transition: all .4s;
@@ -465,6 +445,14 @@ aside .switch {
     border-right-color: #fff;
 }
 
+.lottery-content .content-center {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .lottery-content .content-title  {
     margin: 0 0 10px;
     text-align: center;
@@ -494,10 +482,50 @@ aside .switch {
     font-family: 'STKaiti', 'KaiTi ';
 }
 
-.dashboard {
-    position: relative;
-    margin: 4rem auto 0 auto;
+.lottery-list.simple .lottery-content .content-title {
     text-align: center;
+}
+.lottery-list.simple .lottery-content .content-title .lottery-name {
+    height: 100%;
+    font-size: 5rem;
+    font-weight: 400;
+    line-height: 75px;
+    color: #FD361F;
+    font-weight: bold;
+    font-family: 'STKaiti', 'KaiTi ';
+}
+
+.lottery-list.no_avatar .lottery-avatar {
+    display: none;
+}
+.lottery-list.no_avatar .lottery-content {
+    margin-left: 0;
+}
+.lottery-list.no_avatar .lottery-content::before {
+    display: none;
+}
+.lottery-list.no_avatar .lottery-content::after {
+    display: none;
+}
+
+.dashboard {
+    margin: 4rem auto 0 auto;
+    display: flex;
+}
+.dashboard-f {
+    flex: 1 1 auto;
+    position: relative;
+}
+.dashboard-s {
+    flex: 0 0 auto;
+    position: relative;
+}
+#dashboard-btns-m {
+    width: 15%;
+}
+#dashboard-btns-l, #dashboard-btns-r {
+    display: flex;
+    justify-content: space-around;
 }
 .btn {
     padding: 1rem 1.5rem;
@@ -527,7 +555,7 @@ aside .switch {
 }
 .dashboard .lottery-btn {
     display: inline-block;
-    width: 15%;
+    width: 100%;
     margin: 0 auto;
     padding: 1rem 1.6rem;
     cursor: pointer;
@@ -551,7 +579,6 @@ aside .switch {
 }
 
 .dashboard .cirle-btn {
-    position: absolute;
     display: inline-block;
     width: 2rem;
     height: 2rem;
@@ -566,18 +593,6 @@ aside .switch {
     -webkit-box-shadow: 0 5px rgba(253, 54, 31, 0.5);
     -moz-box-shadow: 0 5px rgba(253, 54, 31, 0.5);
     box-shadow: 0 5px rgba(253, 54, 31, 0.5);
-}
-.dashboard .cirle-btn:nth-child(1) {
-    left: 15%;
-}
-.dashboard .cirle-btn:nth-child(2) {
-    left: 22%;
-}
-.dashboard .cirle-btn:nth-child(4) {
-    right: 22%;
-}
-.dashboard .cirle-btn:nth-child(5) {
-    right: 15%;
 }
 .award-active {
     background: #ffbfb7;
@@ -602,9 +617,10 @@ aside .switch {
 }
 button.close {
     display: none;
-    position: fixed;
-    top: 6%;
-    left: 57%;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
     -webkit-appearance: none;
     padding: 0;
     cursor: pointer;
@@ -663,6 +679,12 @@ button.close {
     bottom: 0;
     height: 100%;
     outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content .modal-inner {
+    position: relative;
 }
 .modal-content #lottery-back {
     position: absolute;
@@ -835,7 +857,3 @@ footer {
     background: url("../img/clear.png") 0 0 no-repeat;
     background-size: contain;
 }
-
-
-
-
